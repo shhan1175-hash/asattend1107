@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>안성고 출결·체험학습 안내</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#1a1a1a;--sub:#4b5563;--line:#d1d5db;--bg:#eef0f4;--pri:#1e3a8a;--pri2:#e8eefb;--blue:#1d4ed8;--warnbg:#fff3e8;--warn:#7c2d12;--okbg:#ecf7ee;--ok:#14532d}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:'Noto Sans KR',system-ui,-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;color:var(--ink);background:var(--bg);font-size:16px;line-height:1.55;-webkit-text-size-adjust:100%}
+.wrap{max-width:560px;margin:0 auto;min-height:100vh;background:#fff;display:flex;flex-direction:column}
+.wrap.wide{max-width:1120px}
+.appbar{position:sticky;top:0;z-index:20;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:4px;min-height:56px;padding:0 8px}
+.appbar h1{font-size:17px;margin:0;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.iconbtn{min-width:44px;height:44px;border:0;background:none;font:inherit;font-size:15px;display:flex;align-items:center;justify-content:center;border-radius:10px;color:var(--ink);cursor:pointer;text-decoration:none;padding:0 8px}
+.iconbtn:focus-visible,.btn:focus-visible,.chip:focus-visible,.choice:focus-visible,.tile:focus-visible,.fld:focus-visible,summary:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+main{padding:16px;display:flex;flex-direction:column;gap:16px;flex:1}
+h2{font-size:18px;margin:8px 0 0}
+h3{font-size:15px;margin:0}
+p{margin:0}
+.q{font-size:22px;font-weight:700;line-height:1.35;margin:0}
+.sub{font-size:14px;color:var(--sub)}
+.small{font-size:13px;color:var(--sub)}
+.tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.tile{display:flex;flex-direction:column;justify-content:space-between;gap:10px;min-height:112px;padding:14px;border:1.5px solid var(--line);border-radius:16px;background:#fff;font:inherit;font-size:16px;font-weight:700;line-height:1.35;text-align:left;color:var(--ink);cursor:pointer;text-decoration:none}
+.tile svg{width:30px;height:30px;stroke:var(--pri)}
+.menu a{display:flex;align-items:center;justify-content:space-between;min-height:56px;padding:0 4px;border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none;font-weight:500}
+.choice{display:flex;justify-content:space-between;align-items:center;gap:8px;width:100%;min-height:62px;padding:10px 16px;border:1.5px solid var(--line);border-radius:14px;background:#fff;font:inherit;font-size:17px;font-weight:700;text-align:left;color:var(--ink);cursor:pointer}
+.choice small{display:block;font-weight:400;font-size:13px;color:var(--sub)}
+.choice[aria-pressed=true]{border:2.5px solid var(--pri);background:var(--pri2)}
+.choice[aria-pressed=true]::after{content:'✓';font-size:20px;color:var(--pri)}
+.choices{display:flex;flex-direction:column;gap:8px}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-height:44px;padding:0 16px;border:1.5px solid var(--line);border-radius:22px;background:#fff;font:inherit;font-size:15px;color:var(--ink);cursor:pointer}
+.chip[aria-pressed=true]{background:var(--pri);border-color:var(--pri);color:#fff;font-weight:700}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:52px;padding:0 16px;border:1.5px solid var(--pri);border-radius:12px;background:#fff;color:var(--pri);font:inherit;font-size:16px;font-weight:700;cursor:pointer;text-decoration:none;text-align:center}
+.btn.pri{background:var(--pri);color:#fff}
+.btn.ghost{border-color:var(--line);color:var(--ink)}
+.btn[disabled],.btn.disabled{opacity:.45;cursor:not-allowed}
+.row{display:flex;gap:8px}
+.row>*{flex:1}
+.foot{position:sticky;bottom:0;z-index:10;background:#fff;border-top:1px solid var(--line);padding:12px 16px calc(12px + env(safe-area-inset-bottom));display:flex;gap:8px}
+.foot .btn{flex:1}
+.foot .btn.pri{flex:2}
+label.f,.f{display:block;font-weight:700;font-size:15px;margin:0 0 6px}
+.in{width:100%;min-height:50px;padding:10px 12px;border:1.5px solid #9ca3af;border-radius:10px;font:inherit;font-size:16px;background:#fff;color:var(--ink)}
+textarea.in{min-height:100px;resize:vertical;line-height:1.6}
+.in:focus{outline:3px solid var(--blue);outline-offset:1px;border-color:var(--blue)}
+.field{display:flex;flex-direction:column}
+.fields{display:flex;flex-direction:column;gap:14px}
+.card{border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:#fff}
+.card.strong{border:2px solid var(--pri)}
+.note{border-radius:12px;padding:12px 14px;font-size:15px;background:var(--pri2)}
+.note.warn{background:var(--warnbg);color:var(--warn)}
+.note.ok{background:var(--okbg);color:var(--ok)}
+.progress{height:8px;background:#e5e7eb;border-radius:4px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--pri)}
+.stepinfo{display:flex;justify-content:space-between;font-size:13px;color:var(--sub);margin-bottom:6px}
+.seg{display:flex;border:1.5px solid var(--pri);border-radius:12px;overflow:hidden}
+.seg a{flex:1;text-align:center;padding:12px 4px;font-weight:700;text-decoration:none;color:var(--pri);font-size:15px}
+.seg a[aria-current=page]{background:var(--pri);color:#fff}
+.kv{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:1px solid #e5e7eb;font-size:15px}
+.kv:last-child{border-bottom:0}
+.kv b{text-align:right}
+.chk{display:flex;gap:10px;align-items:flex-start;padding:7px 0;font-size:15px}
+.chk .m{width:22px;flex:none;font-weight:700;text-align:center}
+.cb{display:flex;align-items:center;gap:12px;min-height:48px;font-size:16px;cursor:pointer}
+.cb input{width:22px;height:22px;accent-color:var(--pri)}
+.sigwrap{position:relative}
+.sigpad{width:100%;height:160px;border:1.5px dashed #6b7280;border-radius:12px;touch-action:none;background:#fff;display:block}
+.sigwrap .clear{position:absolute;right:6px;top:6px;min-height:36px;font-size:13px;padding:0 10px}
+.sigwrap .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#9ca3af;pointer-events:none;font-size:14px}
+details.acc{border:1px solid var(--line);border-radius:12px;background:#fff}
+details.acc summary{list-style:none;cursor:pointer;min-height:52px;display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 14px;font-weight:700}
+details.acc summary::-webkit-details-marker{display:none}
+details.acc summary::after{content:'⌄';font-size:18px}
+details.acc[open] summary::after{content:'⌃'}
+details.acc .body{padding:0 14px 14px;font-size:15px;display:flex;flex-direction:column;gap:6px}
+.tag{display:inline-block;border:1.5px solid var(--ink);border-radius:6px;padding:0 6px;font-size:12px;font-weight:700;margin-right:6px;white-space:nowrap}
+.tl{position:relative;height:64px;margin:6px 0}
+.tl .line{position:absolute;left:0;right:0;top:30px;height:2px;background:var(--ink)}
+.tl .tick{position:absolute;top:22px;width:2px;height:18px;background:var(--ink)}
+.tl .lb{position:absolute;font-size:12px;font-weight:700;white-space:nowrap}
+.photos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.pbox{position:relative;aspect-ratio:4/3;border:1.5px dashed #6b7280;border-radius:10px;overflow:hidden;display:flex;align-items:center;justify-content:center;background:#fafafa;font-size:14px;font-weight:700;color:var(--sub);cursor:pointer}
+.pbox img{width:100%;height:100%;object-fit:cover}
+.pbox .x{position:absolute;right:4px;top:4px;min-height:32px;min-width:32px;border-radius:16px;border:0;background:rgba(0,0,0,.65);color:#fff;font-size:16px;cursor:pointer}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;align-items:center}
+.lg{display:inline-block;width:24px;height:14px;vertical-align:middle;margin-right:5px;border-radius:2px}
+.lg.req{border:2px solid #111}.lg.opt{border:2px dashed #111}.lg.ro{border:1.5px dotted #555}.lg.no{border:1px solid #999;background:repeating-linear-gradient(45deg,#fff 0 4px,#ddd 4px 6px)}
+/* paper */
+.paperbox{overflow-x:auto}
+.paper{background:#fff;color:#000;border:1px solid #c7c7c7;box-shadow:0 1px 4px rgba(0,0,0,.06);padding:1.8em 1.4em;font-size:clamp(10px,2.65vw,14px);line-height:1.6;position:relative}
+.paper table{border-collapse:collapse;width:100%}
+.paper td,.paper th{border:1px solid #000;padding:.3em .4em;vertical-align:middle;font-weight:400}
+.paper th{background:#f3f3f3;font-weight:700;text-align:center;word-break:keep-all}
+.paper .ttl{text-align:center;font-size:1.55em;font-weight:700;margin:.4em 0 .6em;word-break:keep-all}
+.paper .circ{display:inline-block;border:1.5px solid #000;border-radius:50%;padding:0 .45em;line-height:1.25}
+.paper .sig{height:2.4em;vertical-align:middle;margin:-.6em 0}
+.paper .pre{white-space:pre-wrap}
+.paper .gyeol{border-collapse:collapse;width:auto;margin-left:auto}
+.paper .gyeol td{width:4.6em;text-align:center;height:1.7em;padding:0}
+.paper .gyeol td.sp{height:3em}
+.paper .gyeol td.lbl{width:1.8em;line-height:1.3}
+.paper .bl{display:inline-block;min-width:2.2em}
+.paper .foot-n{font-size:.88em;line-height:1.5;margin-top:.6em}
+.paper .phgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8em;margin-top:.8em}
+.paper .phc{border:1px solid #000;aspect-ratio:1/1;display:flex;flex-direction:column}
+.paper .phc .cap{text-align:center;border-bottom:1px solid #000;padding:.2em;font-size:.9em}
+.paper .phc .im{flex:1;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:.3em}
+.paper .phc img{max-width:100%;max-height:100%;object-fit:contain}
+.paper .cut{border-top:1.5px dashed #000;text-align:center;margin:1em 0 .6em;font-size:.9em}
+.paper .red{color:#b91c1c}
+.paper .blue{color:#1d4ed8}
+/* guide marks */
+.g .fld{position:relative;display:block;border-radius:4px;padding:.25em .35em .25em 2.3em;margin:.15em 0;cursor:pointer;min-height:2.1em}
+.g .k-req{outline:2px solid #111;outline-offset:-1px}
+.g .k-opt{outline:2px dashed #111;outline-offset:-1px}
+.g .k-ro{outline:1.5px dotted #555;outline-offset:-1px}
+.g .k-no{background:repeating-linear-gradient(45deg,#fff 0 6px,#ececec 6px 8px);outline:1px solid #9a9a9a;outline-offset:-1px;color:#333}
+.g .badge{position:absolute;left:.35em;top:.3em;width:1.65em;height:1.65em;border-radius:50%;background:var(--blue);color:#fff;font-size:.95em;font-weight:700;display:flex;align-items:center;justify-content:center;line-height:1}
+.g .fld.on{box-shadow:0 0 0 3px var(--blue)}
+.g td.cell{padding:.15em}
+.guide-layout{display:grid;gap:16px}
+.side{display:none}
+@media(min-width:900px){
+ .wrap.wide main{padding:24px}
+ .guide-layout{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);align-items:start}
+ .side{display:block;position:sticky;top:72px;max-height:calc(100vh - 90px);overflow:auto}
+ .paper{font-size:14px}
+}
+.side .it{display:flex;gap:10px;padding:10px 4px;border-bottom:1px solid #e5e7eb;cursor:pointer;border-radius:8px}
+.side .it.on{background:var(--pri2)}
+.side .nb{width:24px;height:24px;border-radius:50%;background:var(--blue);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex:none}
+.kk{display:inline-block;border-radius:5px;padding:0 6px;font-size:12px;font-weight:700;margin-left:6px;vertical-align:1px}
+.kk.req{border:2px solid #111}.kk.opt{border:2px dashed #111}.kk.ro{border:1.5px dotted #555;color:#444}.kk.no{border:1px solid #999;color:#444;background:#f3f3f3}
+/* sheet */
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:40;display:none}
+.scrim.show{display:block}
+.sheet{visibility:hidden;position:fixed;left:50%;bottom:0;transform:translate(-50%,100%);width:100%;max-width:560px;z-index:41;background:#fff;border-radius:18px 18px 0 0;padding:10px 18px calc(18px + env(safe-area-inset-bottom));transition:transform .2s ease;display:flex;flex-direction:column;gap:12px;max-height:80vh;overflow:auto}
+.sheet.show{transform:translate(-50%,0);visibility:visible}
+.sheet .grab{width:44px;height:5px;border-radius:3px;background:#9ca3af;margin:0 auto}
+.sheet .ex{border:1.5px dashed #6b7280;border-radius:10px;padding:10px 12px}
+@media(min-width:900px){.sheet.side-ok{display:none}}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#111;color:#fff;padding:10px 16px;border-radius:10px;font-size:15px;z-index:60;opacity:0;transition:opacity .2s;pointer-events:none;max-width:90vw;text-align:center}
+.toast.show{opacity:1}
+#capture{position:fixed;left:-12000px;top:0;width:794px}
+#capture .page{width:794px;height:1123px;padding:52px 50px;box-shadow:none;border:0;font-size:15px;overflow:hidden}
+#capture .paper .phc{aspect-ratio:auto;height:330px}
+#capture .page.dense{font-size:12.6px;padding:38px 40px}
+.busy{position:fixed;inset:0;background:rgba(255,255,255,.75);z-index:70;display:none;align-items:center;justify-content:center;font-weight:700}
+.busy.show{display:flex}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media print{
+ body{background:#fff}
+ .appbar,.foot,.noprint,.toast,.sheet,.scrim{display:none!important}
+ .wrap{max-width:none}
+ main{padding:0}
+ .paper{border:0;box-shadow:none;font-size:12pt;page-break-after:always}
+}
+
+/* ===== 디자인 테마 ===== */
+:root{--ink:#1c2421;--sub:#55615c;--line:#dde5e1;--bg:#e9efec;--pri:#17614f;--pri-d:#0f4a3c;--pri2:#e4f1ec;--blue:#17614f;--acc:#c2552a;--acc2:#fcede3;--warnbg:#fcede3;--warn:#8a3a12;--okbg:#e4f1ec;--ok:#0f4a3c;--shadow:0 1px 2px rgba(15,45,36,.05),0 6px 18px rgba(15,45,36,.07)}
+body{background:var(--bg)}
+.wrap{background:#f6f9f7;box-shadow:0 0 0 1px rgba(15,45,36,.04)}
+.appbar{background:rgba(246,249,247,.92);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.appbar.hero{display:none}
+.appbar.hero .iconbtn{color:#fff}
+.iconbtn:focus-visible,.btn:focus-visible,.chip:focus-visible,.choice:focus-visible,.tile:focus-visible,.fld:focus-visible,summary:focus-visible,.menu a:focus-visible{outline:3px solid #f0a35e;outline-offset:2px}
+h2{font-size:19px;letter-spacing:-.01em}
+.q{font-size:23px;letter-spacing:-.02em}
+.card{border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow)}
+.card.strong{border:1.5px solid var(--pri);box-shadow:0 6px 18px rgba(23,97,79,.10)}
+.choice{border:1.5px solid var(--line);border-radius:16px;box-shadow:var(--shadow);transition:border-color .15s,background .15s}
+.choice small{color:var(--sub)}
+.choice[aria-pressed=true]{border:2px solid var(--pri);background:var(--pri2);box-shadow:none}
+.choice[aria-pressed=true]::after{content:'';flex:none;width:26px;height:26px;border-radius:50%;background:var(--pri) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E") center/15px no-repeat}
+.chip{border:1.5px solid var(--line);background:#fff;transition:background .15s}
+.chip[aria-pressed=true]{background:var(--pri);border-color:var(--pri)}
+.btn{border-radius:14px;transition:background .15s,transform .05s}
+.btn:active{transform:translateY(1px)}
+.btn.pri{background:var(--pri);border-color:var(--pri);box-shadow:0 6px 14px rgba(23,97,79,.25)}
+.btn.pri:hover{background:var(--pri-d)}
+.btn.ghost{background:#fff;border-color:var(--line)}
+.btn:not(.pri):not(.ghost){background:#fff}
+.note{border-radius:14px;background:var(--pri2);color:var(--pri-d)}
+.note a{color:var(--pri-d);font-weight:700}
+.note.warn{background:var(--acc2);color:var(--warn)}
+.progress{height:6px;background:#d9e5e0;border-radius:3px}
+.progress i{border-radius:3px}
+.seg{border:0;background:#dfe9e5;padding:4px;border-radius:14px;gap:4px}
+.seg a{border-radius:10px;color:var(--sub);padding:10px 4px}
+.seg a[aria-current=page]{background:#fff;color:var(--pri);box-shadow:0 1px 3px rgba(15,45,36,.15)}
+.foot{background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-top:1px solid var(--line)}
+.in{border:1.5px solid #c6d2cd;border-radius:12px}
+.in:focus{outline:3px solid rgba(23,97,79,.22);border-color:var(--pri)}
+.cb input{accent-color:var(--pri)}
+.sigpad{border:1.5px dashed #a9bab3;border-radius:14px}
+.pbox{border:1.5px dashed #a9bab3;border-radius:14px;background:#fff;color:var(--pri)}
+details.acc{border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow)}
+details.acc[open] summary{color:var(--pri)}
+.tag{border:0;background:var(--pri2);color:var(--pri-d);border-radius:8px;padding:1px 8px}
+.kv{border-bottom-color:#e8eeeb}
+.tl .line,.tl .tick{background:var(--pri)}
+.paper{border:1px solid #d6ddd9;border-radius:6px;box-shadow:0 2px 10px rgba(15,45,36,.08)}
+.side .it.on{background:var(--pri2)}
+.toast{background:var(--pri-d);border-radius:12px}
+.busy{background:rgba(246,249,247,.85);color:var(--pri)}
+/* 홈 */
+.hero{background:var(--pri);color:#fff;margin:-16px -16px 0;padding:30px 22px 66px;border-radius:0 0 28px 28px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;right:-40px;top:-30px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.07)}
+.hero .sch{font-size:14px;opacity:.85;font-weight:500}
+.hero .ttl{font-size:25px;font-weight:700;letter-spacing:-.02em;margin:2px 0 6px;line-height:1.3}
+.hero .ds{font-size:15px;opacity:.9}
+.tiles.lift{margin-top:-48px;position:relative;z-index:1}
+.tile{border:0;border-radius:20px;box-shadow:var(--shadow);transition:transform .1s}
+.tile:active{transform:scale(.98)}
+.tile .ic{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center}
+.tile svg{width:25px;height:25px}
+.tile.t1 .ic{background:#fcede3}.tile.t1 svg{stroke:#c2552a}
+.tile.t2 .ic{background:#efeafa}.tile.t2 svg{stroke:#6a4cc0}
+.tile.t3 .ic{background:#e4f1ec}.tile.t3 svg{stroke:#17614f}
+.tile.t4 .ic{background:#e6eefb}.tile.t4 svg{stroke:#2a5bb8}
+.secttl{font-size:14px;font-weight:700;color:var(--sub);margin:4px 2px -6px}
+.menu{display:flex;flex-direction:column;gap:8px}
+.menu a{background:#fff;border:1px solid var(--line);border-radius:16px;padding:0 14px;min-height:62px;gap:12px;box-shadow:var(--shadow);border-bottom:1px solid var(--line)}
+.menu a .no{width:32px;height:32px;border-radius:10px;background:var(--pri2);color:var(--pri);font-weight:700;display:flex;align-items:center;justify-content:center;flex:none}
+.menu a .tx{flex:1}
+.menu a .tx small{display:block;font-size:13px;color:var(--sub);font-weight:400}
+.menu a .ar{color:#9aaaa3;font-size:20px}
+.remind{display:flex;justify-content:space-between;align-items:center;gap:10px;border-left:0;background:#fff}
+.pill{display:inline-block;background:var(--acc);color:#fff;border-radius:999px;padding:1px 10px;font-size:13px;font-weight:700;margin-left:6px;vertical-align:1px}
+</style>
+</head>
+<body>
+<div class="wrap" id="wrap">
+ <header class="appbar" id="appbar"></header>
+ <main id="app" tabindex="-1"></main>
+ <div id="footer"></div>
+</div>
+<div class="scrim" id="scrim"></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="busy" id="busy">문서를 만드는 중이에요…</div>
+<div id="capture" aria-hidden="true"></div>
+<script>
+/* =========================================================
+   학교 설정 — 규정이 바뀌면 이 부분만 고치면 됩니다.
+   ========================================================= */
+const CONFIG = {
+  school: '안성고등학교',
+  startTime: '8:50', endTime: '16:40', familyDayEnd: '15:40',
+  sickSubmitDays: 5,          // 결석한 날부터 5일 이내 (달력 기준으로 계산, 시작일 포함)
+  tripAnnualDays: 20,         // 학교장허가 교외체험학습 연간 출석인정 일수
+  tripGeneralMax: 14,         // 일반형태 체험학습 연간 최대
+  tripApplyBefore: 3,         // 신청서 제출: 시작일 3일 이전
+  tripReportWithin: 7,        // 결과보고서 제출: 종료 후 7일 이내
+  tripSafetyDays: 5,          // 5일 이상 연속 시 주 1회 담임 통화
+  // 불허기간 (학교에서 입력) 예: {from:'2026-12-14', to:'2026-12-18', name:'2학기 기말고사'}
+  banPeriods: [],
+  // 공휴일·재량휴업일 (학교에서 확인·추가) — 일수 계산에서 빠집니다.
+  holidays: ['2026-12-25','2027-01-01','2027-03-01','2027-05-05'],
+  contact: '담임선생님 또는 교무실'
+};
+const FAMILY = [
+  {id:'m1', g:'결혼', who:'형제·자매, 부·모', days:1},
+  {id:'a1', g:'입양', who:'학생 본인', days:20},
+  {id:'d5', g:'사망', who:'부모, 조부모, 외조부모', days:5},
+  {id:'d3', g:'사망', who:'증조부모·외증조부모, 형제·자매 및 그 배우자', days:3},
+  {id:'d3b', g:'사망', who:'부모의 형제·자매 및 그 배우자', days:3, check:true}
+];
+
+/* ---------- 유틸 ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const WD = '일월화수목금토';
+const pd = s => { if (!s) return null; const [y,m,d] = s.split('-').map(Number); return new Date(y, m-1, d); };
+const ds = d => d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+const addD = (s,n) => { const d = pd(s); d.setDate(d.getDate()+n); return ds(d); };
+const md = s => { if (!s) return ''; const d = pd(s); return (d.getMonth()+1) + '.' + d.getDate() + '(' + WD[d.getDay()] + ')'; };
+const mdLong = s => { const d = pd(s); return (d.getMonth()+1) + '월 ' + d.getDate() + '일(' + WD[d.getDay()] + ')'; };
+const todayS = () => ds(new Date());
+const isOff = s => { const w = pd(s).getDay(); return w === 0 || w === 6 || CONFIG.holidays.includes(s); };
+function schoolDays(a, b) { if (!a || !b || b < a) return 0; let n = 0, s = a, g = 0; while (s <= b && g++ < 400) { if (!isOff(s)) n++; s = addD(s,1); } return n; }
+function nthSchoolDay(start, n) { let s = start, c = 0, g = 0; while (g++ < 400) { if (!isOff(s)) { c++; if (c === n) return s; } s = addD(s,1); } return s; }
+const dday = s => Math.round((pd(s) - pd(todayS())) / 86400000);
+const ddayTxt = n => n > 0 ? 'D-' + n : n === 0 ? '오늘까지' : '기한 ' + (-n) + '일 지남';
+function josa(w, a, b) { const c = w.charCodeAt(w.length-1); if (c < 0xAC00 || c > 0xD7A3) return b; const j = (c - 0xAC00) % 28; return (j === 0 || j === 8) ? b : a; }
+function ymdParts(s) { if (!s) return ['','','']; const d = pd(s); return [String(d.getFullYear()).slice(2), d.getMonth()+1, d.getDate()]; }
+function overlapBan(a, b) { return CONFIG.banPeriods.filter(p => !(b < p.from || a > p.to)); }
+
+/* ---------- 상태 (이 기기에만 저장) ---------- */
+const KEY = 'ansong-att-v1';
+const DEF = () => ({
+  profile: {grade:'', cls:'', num:'', name:'', phone:'', gName:'', gRel:'', gPhone:''},
+  absence: {step:1, type:'', reason:'', start:'', end:'', periods:[], when:'', sym:[], act:[], content:'', edited:false, famId:'', famEvent:'', rel:'', docs:[], sigMode:'pad', sig:'', done:false},
+  trip: {step:1, used:'', usedGen:'', mode:'day', start:'', end:'', hDate:'', hFrom:'13:00', hTo:'16:40', type:'', typeEtc:'', dest:'', stay:'', stayPlace:'', theme:'', subject:'', purpose:'', pEdited:false, plan:{}, leaderSame:true, lName:'', lRel:'', lPhone:'', safety:false, ruleOk:false, sigMode:'pad', sigG:'', sigS:'', done:false},
+  report: {step:1, loaded:false, mode:'day', start:'', end:'', hDate:'', hFrom:'', hTo:'', dest:'', comp:'', type:'', typeEtc:'', title:'', days:{}, cur:'', photos:[], sigMode:'pad', sigG:'', sigS:'', done:false}
+});
+let S = DEF();
+try { const raw = localStorage.getItem(KEY); if (raw) { const o = JSON.parse(raw); const d = DEF(); for (const k of Object.keys(d)) S[k] = Object.assign(d[k], o[k] || {}); } } catch (e) {}
+let saveT = null;
+function save() { clearTimeout(saveT); saveT = setTimeout(() => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { try { const c = JSON.parse(JSON.stringify(S)); c.report.photos = []; localStorage.setItem(KEY, JSON.stringify(c)); } catch (e2) {} } }, 250); }
+const getp = p => p.split('.').reduce((o,k) => o == null ? o : o[k], S);
+function setp(p, v) { const ks = p.split('.'); let o = S; for (let i = 0; i < ks.length-1; i++) o = o[ks[i]]; o[ks[ks.length-1]] = v; save(); }
+
+/* ---------- 저장(다운로드) ---------- */
+let DL = null;
+try { if (window.claude && typeof window.claude.use === 'function') window.claude.use('downloads').then(d => { DL = d; }).catch(() => {}); } catch (e) {}
+const inClaude = !!(window.claude && window.claude.use);
+async function saveFile(name, blob) {
+  if (DL) {
+    try { const r = await DL.save({filename: name, data: blob}); toast(r && r.status === 'delivered' ? '보냈어요' : '저장했어요'); return; }
+    catch (e) { if (e && e.code === 'declined') { toast('저장을 취소했어요'); return; } if (e && e.code === 'rate_limited') { toast('잠시 후 다시 눌러 주세요'); return; } }
+  }
+  try {
+    const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = name;
+    document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 8000);
+    toast('저장을 시작했어요');
+  } catch (e) { toast('이 화면에서는 저장할 수 없어요'); }
+}
+function toast(m) { const t = $('#toast'); t.textContent = m; t.classList.add('show'); clearTimeout(t._h); t._h = setTimeout(() => t.classList.remove('show'), 2400); }
+
+let libsP = null;
+function loadLibs() {
+  if (libsP) return libsP;
+  const load = src => new Promise((res, rej) => { const s = document.createElement('script'); s.src = src; s.onload = res; s.onerror = rej; document.head.appendChild(s); });
+  libsP = Promise.all([
+    window.html2canvas ? 0 : load('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js'),
+    (window.jspdf && window.jspdf.jsPDF) ? 0 : load('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js')
+  ]).catch(e => { libsP = null; throw e; });
+  return libsP;
+}
+async function renderCanvases(kind) {
+  $('#busy').classList.add('show');
+  try {
+    await loadLibs();
+    const cap = $('#capture');
+    cap.innerHTML = docPages(kind, false).map(p => `<div class="paper page${p.dense ? ' dense' : ''}">${p.html}</div>`).join('');
+    try { await document.fonts.ready; } catch (e) {}
+    const out = [];
+    for (const pg of cap.querySelectorAll('.page')) out.push(await window.html2canvas(pg, {scale: 2, backgroundColor: '#ffffff', logging: false}));
+    cap.innerHTML = '';
+    return out;
+  } finally { $('#busy').classList.remove('show'); }
+}
+const DOCNAME = {absence:'학생근태신고서', trip:'교외체험학습_신청서', report:'교외체험학습_결과보고서'};
+function fileBase(kind) { const p = S.profile; return DOCNAME[kind] + '_' + (p.grade||'') + '-' + (p.cls||'') + '-' + (p.num||'') + '_' + (p.name||'학생') + '_' + todayS().replace(/-/g,''); }
+async function savePDF(kind) {
+  let cs; try { cs = await renderCanvases(kind); } catch (e) { toast('문서를 만들지 못했어요. 인터넷 연결을 확인해 주세요.'); return; }
+  const pdf = new window.jspdf.jsPDF({unit: 'mm', format: 'a4'});
+  cs.forEach((c, i) => { if (i) pdf.addPage(); pdf.addImage(c.toDataURL('image/jpeg', 0.92), 'JPEG', 0, 0, 210, 297); });
+  await saveFile(fileBase(kind) + '.pdf', pdf.output('blob'));
+}
+async function savePNG(kind) {
+  let cs; try { cs = await renderCanvases(kind); } catch (e) { toast('이미지를 만들지 못했어요. 인터넷 연결을 확인해 주세요.'); return; }
+  for (let i = 0; i < cs.length; i++) {
+    const blob = await new Promise(r => cs[i].toBlob(r, 'image/png'));
+    await saveFile(fileBase(kind) + (cs.length > 1 ? '_' + (i+1) : '') + '.png', blob);
+  }
+}
+
+/* ---------- 아이콘 ---------- */
+const ICON = {
+  sick: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4v10.5a3.5 3.5 0 1 1-4 0V4a2 2 0 0 1 4 0Z"/><path d="M12 14v2"/></svg>',
+  family: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="8" cy="7" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M2.5 20a5.5 5.5 0 0 1 11 0M13.5 20a4 4 0 0 1 8 0"/></svg>',
+  trip: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg>',
+  report: '<svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 13h7M9 17h5"/></svg>'
+};
+
+/* ---------- 항목별 안내 데이터 ---------- */
+const KL = {req:'필수', opt:'해당 시', ro:'읽기만', no:'작성 안 함'};
+const GUIDE = {
+ absence: {
+  1:{t:'결재란 (담임·부장)', k:'no', w:'학교에서 서명하는 칸이에요. 비워 두세요.'},
+  2:{t:'제목의 종류', k:'req', w:'결석·지각·조퇴·결과 중 해당하는 하나에 ○ 표시해요.', ex:'하루 종일 못 갔다면 “결석”에 ○', m:'수업 일부만 빠졌다면 결석이 아니라 “결과”예요.'},
+  3:{t:'학년·반·번, 성명', k:'req', w:'학생 정보를 써요.', ex:'2학년 3반 15번 / 성명: 홍길동'},
+  4:{t:'본문 – 종류와 시점', k:'req', w:'제목과 같은 종류에 ○ 표시하고, 이미 빠진 뒤에 내면 “하였으므로”, 미리 내면 “하고자”에 ○ 표시해요.', ex:'(결석) … [하였으므로]', m:'제목과 본문의 종류가 다르면 다시 써야 해요.'},
+  5:{t:'1. 내용', k:'req', w:'빠진 이유를 한두 문장으로 구체적으로 써요.', ex:'새벽부터 고열·복통이 있어 병원 진료 후 집에서 안정함.', m:'“개인 사정”처럼 이유가 없으면 다시 써야 할 수 있어요. 밝히기 어려운 병명은 쓰지 않아도 돼요.'},
+  6:{t:'2. 기간 (○일간)', k:'req', w:'시작일 ~ 끝난 날과 일수를 써요. 토·일·공휴일은 일수에서 빼요.', ex:'2026년 11월 5일 ~ 11월 6일(2일간)', m:'주말을 일수에 넣는 실수가 많아요. 쉬운 작성에서는 자동으로 계산돼요.'},
+  7:{t:'(○교시)', k:'opt', w:'지각·조퇴·결과일 때만 써요. 결석이면 비워 두세요.', ex:'(3~4교시)'},
+  8:{t:'※ 상고 – 학생과의 관계', k:'opt', w:'장례(상고)로 인한 결석일 때만 고인과 학생의 관계를 써요.', ex:'친조모', m:'사망확인서·가족관계증명서 등 증빙서류를 함께 내야 해요.'},
+  9:{t:'작성일', k:'req', w:'제출하는 날짜를 써요.', ex:'2026년 11월 7일', m:'질병결석은 결석 시작일부터 ' + CONFIG.sickSubmitDays + '일 이내에 내야 해요.'},
+  10:{t:'보호자 (인)', k:'req', w:'보호자 성명을 쓰고 서명하거나 도장을 찍어요.', ex:'보호자: 홍○○ (서명)', m:'이 양식에는 학생 서명란이 없어요.'},
+  11:{t:'담임교사 확인', k:'no', w:'담임선생님이 쓰는 칸이에요. 다만 여기에 적힌 증빙서류를 함께 내야 해요.', ex:'2일 이내: 처방전·진료확인서·담임의견서·학부모의견서 중 하나\n3일 이상: 의사소견서·진료확인서 등 병명·진료기간이 적힌 서류'}
+ },
+ trip: {
+  1:{t:'결재란 (담임·학년부장)', k:'no', w:'학교에서 서명하는 칸이에요.'},
+  2:{t:'제출 기한 안내', k:'ro', w:'신청서는 시작일 ' + CONFIG.tripApplyBefore + '일 이전, 결과보고서는 종료 후 ' + CONFIG.tripReportWithin + '일 이내에 내요.'},
+  3:{t:'성명, 학년·반·번, 휴대폰', k:'req', w:'학생 정보와 학생 휴대폰 번호를 써요.'},
+  4:{t:'연간 (' + CONFIG.tripAnnualDays + ')일', k:'ro', w:'학교 기준 연간 출석인정 일수예요. 요건 점검 화면에서 남은 일수를 계산할 수 있어요.'},
+  5:{t:'신청기간 – 1일 기준', k:'opt', w:'하루 이상 가는 경우 시작일과 끝나는 날을 써요.', ex:'2026년 11월 16일 ~ 11월 18일'},
+  6:{t:'신청기간 – 반일 기준(4시간 미만)', k:'opt', w:'반나절만 빠지는 경우 날짜와 시간을 써요. 반일 1회는 0.5일이에요.', ex:'11월 20일 13시 00분 ~ 16시 40분'},
+  7:{t:'총 ( )일', k:'req', w:'1일 기준 일수(토·일·공휴일 제외)와 반일(×0.5)을 더해요.', ex:'총 (3)일'},
+  8:{t:'세부 규칙 및 불허기간 확인 (○, ×)', k:'req', w:'학교의 세부 규칙과 불허기간을 확인하고 ○ 표시해요. 필요하면 담임선생님과 먼저 상의해요.', m:'불허기간과 겹치면 허가되지 않을 수 있어요.'},
+  9:{t:'학습형태', k:'req', w:'가족동반여행·친인척 방문·답사견학 활동·체험활동 중 하나에 표시해요. 체험활동은 괄호에 내용을 써요.', m:'일반형태 체험학습은 연간 최대 ' + CONFIG.tripGeneralMax + '일까지만 신청할 수 있어요.'},
+  10:{t:'목적지', k:'req', w:'시·군까지 구체적으로 써요. 해외는 나라와 도시를 써요.', ex:'경상북도 경주시'},
+  11:{t:'(숙박시) 숙박장소', k:'opt', w:'자고 오는 경우에만 숙소 이름이나 친척 집 등을 써요.'},
+  12:{t:'보호자명·관계·휴대폰', k:'req', w:'신청하는 보호자 정보를 써요.'},
+  13:{t:'인솔자명·관계·휴대폰', k:'req', w:'실제로 함께 가는 사람을 써요. 보호자와 같으면 같은 내용을 써요.'},
+  14:{t:'목 적', k:'req', w:'무엇을 배우려는지 한두 문장으로 써요.', ex:'경주 역사 유적을 답사하며 한국사에서 배운 신라 문화를 직접 확인한다.', m:'“가족 여행”만 쓰면 다시 써야 할 수 있어요.'},
+  15:{t:'교외체험학습 계획', k:'req', w:'날짜별로 장소와 활동을 한 줄씩 써요.', ex:'11/16 불국사·석굴암 답사\n11/17 국립경주박물관 관람'},
+  16:{t:'학생안전 – 동의함', k:'opt', w:CONFIG.tripSafetyDays + '일 이상 연속이면 꼭 체크해요. 주 1회 이상 학생이 담임선생님과 직접 통화해야 해요.'},
+  17:{t:'신청일, 보호자·학생 서명', k:'req', w:'신청 날짜를 쓰고 보호자와 학생이 모두 서명해요.', m:'시작일 ' + CONFIG.tripApplyBefore + '일 전까지 내야 해요.'},
+  18:{t:'통보서 (이하 담임 작성)', k:'no', w:'담임선생님이 쓰는 칸이에요. 신청서를 냈다고 바로 허가된 것이 아니에요. 담임선생님께 허가 통보서(또는 문자)를 받은 뒤 출발하세요.'}
+ },
+ report: {
+  1:{t:'결재란 (담임·학년부장)', k:'no', w:'학교에서 서명하는 칸이에요.'},
+  2:{t:'성명, 학년·반·번', k:'req', w:'신청서와 같게 써요.'},
+  3:{t:'기간 – 1일 기준 / 반일 기준', k:'req', w:'실제로 다녀온 기간을 해당하는 칸에 써요.', m:'신청서와 달라졌다면 담임선생님께 먼저 알려요.'},
+  4:{t:'목적지, 보호자(동반자)', k:'req', w:'실제로 간 곳과 함께 간 사람을 써요.'},
+  5:{t:'학습형태', k:'req', w:'신청서와 같은 항목에 표시해요.'},
+  6:{t:'제 목', k:'req', w:'체험을 한 줄로 나타내요.', ex:'경주에서 만난 신라의 문화'},
+  7:{t:'본문 – 느낀 점, 배운 점', k:'req', w:'학생이 직접 써요. 날짜별로 무엇을 보고 했는지, 새로 알게 된 것, 느낀 점을 써요. 그림도 괜찮아요.', ex:'11/16 불국사에서 다보탑과 석가탑을 보고 해설을 들었다. 두 탑의 모양이 다른 이유를 알게 되었다.', m:'“재미있었다”만 쓰면 다시 써야 할 수 있어요.'},
+  8:{t:'제출일, 보호자·학생 서명', k:'req', w:'제출 날짜를 쓰고 보호자와 학생이 모두 서명해요.', m:'체험학습이 끝난 뒤 ' + CONFIG.tripReportWithin + '일 이내에 내야 해요.'},
+  9:{t:'별지 – 성명, 학년·반·번', k:'req', w:'본문과 같게 써요.'},
+  10:{t:'별지 – 증빙자료 1~4', k:'req', w:'학생이 나온 현장 사진, 입장권·영수증 등을 붙여요.', m:'사진만 붙이고 학생이 보이지 않으면 확인이 어려울 수 있어요.'}
+ }
+};
+
+/* ---------- 양식 렌더러 (안내 모드 g=true / 문서 모드 g=false) ---------- */
+function mk(g, kind) {
+  return (n, html, opt) => {
+    opt = opt || {};
+    if (!g) return opt.inline ? html : `<div${opt.cls ? ` class="${opt.cls}"` : ''}${opt.style ? ` style="${opt.style}"` : ''}>${html}</div>`;
+    const k = GUIDE[kind][n].k;
+    return `<div class="fld k-${k}${opt.cls ? ' ' + opt.cls : ''}" role="button" tabindex="0" data-g="${kind}" data-n="${n}" aria-label="${n}번 ${esc(GUIDE[kind][n].t)} 안내 보기"${opt.style ? ` style="${opt.style}"` : ''}><span class="badge" aria-hidden="true">${n}</span>${html}</div>`;
+  };
+}
+const circ = (list, val, g) => list.map(t => (!g && t === val) ? `<span class="circ">${t}</span>` : t).join(', ');
+const bl = (v, w) => v !== '' && v != null ? esc(v) : `<span class="bl" style="min-width:${w||2.2}em">&nbsp;</span>`;
+function sigHtml(mode, data, g) { return (!g && mode === 'pad' && data) ? `<img class="sig" src="${data}" alt="서명">` : ''; }
+function gyeol(F, n, a, b) { return F(n, `<table class="gyeol"><tr><td rowspan="2" class="lbl">결<br>재</td><td>${a}</td><td>${b}</td></tr><tr><td class="sp"></td><td class="sp"></td></tr></table>`, {style:'display:inline-block'}); }
+
+function formAbsence(g) {
+  const F = mk(g, 'absence'), a = g ? DEF().absence : S.absence, p = g ? DEF().profile : S.profile;
+  const types = ['결석','지각','조퇴','결과'];
+  const [y1,m1,d1] = ymdParts(a.start), [,m2,d2] = ymdParts(a.type === '결석' ? a.end : a.start);
+  const days = a.type === '결석' ? schoolDays(a.start, a.end) : '';
+  const per = a.type && a.type !== '결석' && a.periods.length ? periodTxt(a.periods) : '';
+  const fam = a.reason === '경조사' && a.famEvent === '사망' ? a.rel : '';
+  const subDate = g ? ['','',''] : ymdParts(todayS());
+  return `
+  <div style="display:flex;justify-content:flex-end">${gyeol(F,1,'담임','부장')}</div>
+  ${F(2, `<div class="ttl" style="margin:.2em 0">학생근태(${circ(types, a.type, g)})신고서</div>`)}
+  ${F(3, `<div style="text-align:right">${bl(p.grade)}학년 ${bl(p.cls)}반 ${bl(p.num)}번 &nbsp; 성명 : ${bl(p.name,5)}</div>`)}
+  ${F(4, `<p style="text-indent:1em">위 학생은 다음과 같은 사유로 (${circ(types, a.type, g)}[${circ(['하였으므로','하고자'], a.when, g)}]) 신고서를 제출하오니 허락하여 주시기 바랍니다.</p>`)}
+  ${F(5, `<div>1. 내용 : <span class="pre">${esc(a.content)}</span></div>`, {style:'min-height:3.4em'})}
+  ${F(6, `<div>2. 기간 : 20${bl(y1)}년 ${bl(m1)}월 ${bl(d1)}일 ~ ${bl(m2)}월 ${bl(d2)}일( ${bl(days)}일간)</div>`)}
+  ${F(7, `<div style="padding-left:12em">( ${bl(per,3)} 교시)</div>`)}
+  ${F(8, `<div>※ 상고 사유로 인정결석인 경우<br>&nbsp; 학생과의 관계 : ${bl(fam,5)}</div>`)}
+  ${F(9, `<div style="text-align:right">20${bl(subDate[0])}년 ${bl(subDate[1])}월 ${bl(subDate[2])}일</div>`)}
+  ${F(10, `<div style="text-align:right">보호자 : ${bl(p.gName,5)} ${sigHtml(a.sigMode, a.sig, g)}(인)</div>`)}
+  <div style="margin:.6em 0 .6em .4em;font-weight:700">${CONFIG.school}장 귀하</div>
+  ${F(11, `<div style="text-align:center;font-weight:700">담임교사 확인</div><div>위 사실을 (처방전, 진료확인서, 담임의견서, 학부모의견서, 의사소견서, <span class="bl" style="min-width:4em">&nbsp;</span>)으로 확인함.</div><div style="margin-top:.5em">▣ (결석, 지각, 조퇴, 결과)종류 : 질병( ), 기타( ), 인정( )</div><div style="text-align:right;margin-top:.4em">20&nbsp;&nbsp;&nbsp;년 &nbsp;&nbsp;월 &nbsp;&nbsp;일</div>`, {style:'border:1px solid #000;padding:.6em .8em' + (g ? ';padding-left:2.6em' : '')})}
+  <div class="foot-n">※ 출석인정 관련 사항을 내부결재를 득한 경우, 학교장허가 교외체험학습 건은 학생근태신고서를 작성하지 않음.<br>※ 2일 이내 결석 : (처방전, 진료확인서, 담임의견서, 학부모의견서)를 학생근태신고서와 함께 첨부<br>※ 3일 이상 결석 : 의사소견서, 진료확인서 등으로 병명, 진료기간 등이 기록된 증빙서류를 학생근태신고서와 함께 첨부</div>`;
+}
+function periodTxt(arr) { const s = [...arr].sort((x,y) => x-y); if (s.length > 1 && s[s.length-1] - s[0] === s.length - 1) return s[0] + '~' + s[s.length-1]; return s.join(','); }
+
+const TRIP_TYPES = ['가족동반여행','친·인척 방문','답사∙견학 활동','체험활동'];
+function tripTypeHtml(type, etc, g) {
+  return TRIP_TYPES.map(t => {
+    const on = !g && t === type;
+    const inner = t === '체험활동' ? `체험활동(${on ? esc(etc) : '<span class="bl" style="min-width:3em">&nbsp;</span>'})` : `${t}(${on ? '○' : '&nbsp;&nbsp;'})`;
+    return '∘' + inner;
+  }).join(' ');
+}
+function tripDays(t) { return t.mode === 'half' ? (t.hDate ? 0.5 : 0) : schoolDays(t.start, t.end); }
+function tripDates(t) { if (t.mode === 'half') return t.hDate ? [t.hDate] : []; const r = []; if (!t.start || !t.end || t.end < t.start) return r; let s = t.start, g = 0; while (s <= t.end && g++ < 60) { if (!isOff(s)) r.push(s); s = addD(s,1); } return r; }
+function hm(t) { if (!t) return ['','']; const [h,m] = t.split(':'); return [Number(h), m]; }
+function planText(t) { return tripDates(t).map(d => { const v = (t.plan[d] || '').trim(); return v ? md(d) + ' ' + v : ''; }).filter(Boolean).join('\n'); }
+
+function formTrip(g) {
+  const F = mk(g, 'trip'), t = g ? DEF().trip : S.trip, p = g ? DEF().profile : S.profile;
+  const day = t.mode === 'day', half = t.mode === 'half';
+  const [y1,m1,d1] = day ? ymdParts(t.start) : ['','',''], [,m2,d2] = day ? ymdParts(t.end) : ['','',''];
+  const [hy,hmn,hd] = half ? ymdParts(t.hDate) : ['','',''];
+  const [fh,fm] = half ? hm(t.hFrom) : ['',''], [th,tm] = half ? hm(t.hTo) : ['',''];
+  const tot = g ? '' : tripDays(t);
+  const L = t.leaderSame ? {n:p.gName, r:p.gRel, ph:p.gPhone} : {n:t.lName, r:t.lRel, ph:t.lPhone};
+  const subDate = g ? ['','',''] : ymdParts(todayS());
+  const c = (n, html, st) => `<td class="cell"${st ? ` ${st}` : ''}>${F(n, html)}</td>`;
+  return `
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:1em">
+   <div><div style="font-size:.95em">&lt;서식 1&gt; &nbsp;<b>${CONFIG.school}</b></div><div class="ttl" style="text-align:left;margin:.2em 0 .1em;font-size:1.45em">「학교장허가 교외체험학습」신청서</div>
+   ${F(2, `<div style="font-size:.9em">※신청서 제출 기한 ( ${CONFIG.tripApplyBefore} )일 이전, 보고서 제출 기한 ( ${CONFIG.tripReportWithin} )일 이내</div>`)}</div>
+   ${gyeol(F,1,'담임','학년부장')}
+  </div>
+  <table style="margin-top:.5em">
+   <colgroup><col style="width:15%"><col style="width:9%"><col style="width:15%"><col style="width:31%"><col style="width:12%"><col style="width:18%"></colgroup>
+   <tr><th>성 명</th>${c(3, bl(p.name,4), 'colspan="2"')}${c(3, `${bl(p.grade)}학년 ${bl(p.cls)}반 ${bl(p.num)}번`)}<th>휴대폰</th>${c(3, bl(p.phone,5))}</tr>
+   <tr><td rowspan="3" class="cell" style="text-align:center;font-weight:700">${F(4, `본교<br>출석인정기간<br>연간( ${CONFIG.tripAnnualDays} )일`)}</td><th rowspan="2">신청<br>기간</th><th>1일 기준</th>${c(5, `20${bl(y1)}년 ${bl(m1)}월 ${bl(d1)}일 ~ ${bl(m2)}월 ${bl(d2)}일`, 'colspan="2"')}${c(7, `총 ( ${bl(tot)} )일<div style="font-size:.78em" class="blue">※ 반일 1회는 0.5 표기</div>`, 'rowspan="2" style="text-align:center"')}</tr>
+   <tr><th>반일 기준<br><span style="font-weight:400;font-size:.85em">(4시간 미만)</span></th>${c(6, `날짜 20${bl(hy)}년 ${bl(hmn)}월 ${bl(hd)}일<br>시간 ${bl(fh)}시 ${bl(fm)}분 ~ ${bl(th)}시 ${bl(tm)}분`, 'colspan="2"')}</tr>
+   <tr>${c(8, `우리 학교 학교장허가 교외체험학습 세부 규칙 및 불허기간 확인<br><b style="font-size:.9em">※ 필요시 담임교사와의 사전 협의 또는 문의</b>`, 'colspan="4" style="text-align:center"')}${c(8, `( ${!g && t.ruleOk ? '<span class="circ">○</span>' : '○'} , × )`, 'style="text-align:center"')}</tr>
+   <tr><th>학습형태</th>${c(9, `${tripTypeHtml(t.type, t.typeEtc, g)}<div class="red" style="font-size:.9em">※ 일반형태의 체험학습은 최대 연간 ${CONFIG.tripGeneralMax}일까지만 신청 가능함.</div>`, 'colspan="5"')}</tr>
+   <tr><th>목적지</th>${c(10, bl(t.dest,6), 'colspan="2"')}<th style="font-size:.9em">(숙박시)<br>숙박장소</th>${c(11, bl(t.stay === 'y' ? t.stayPlace : '',5), 'colspan="2"')}</tr>
+   <tr><th>보호자명</th>${c(12, bl(p.gName,4), 'colspan="2"')}<td class="cell" style="padding:0"><table style="width:100%;height:100%"><tr><th style="border:0;border-right:1px solid #000;width:35%">관계</th><td style="border:0">${F(12, bl(p.gRel,3))}</td></tr></table></td><th>휴대폰</th>${c(12, bl(p.gPhone,5))}</tr>
+   <tr><th>인솔자명</th>${c(13, bl(g ? '' : L.n,4), 'colspan="2"')}<td class="cell" style="padding:0"><table style="width:100%;height:100%"><tr><th style="border:0;border-right:1px solid #000;width:35%">관계</th><td style="border:0">${F(13, bl(g ? '' : L.r,3))}</td></tr></table></td><th>휴대폰</th>${c(13, bl(g ? '' : L.ph,5))}</tr>
+   <tr><th>목 적</th>${c(14, `<div class="pre" style="min-height:3.6em">${esc(t.purpose)}</div>`, 'colspan="5"')}</tr>
+   <tr><th>교외체험<br>학습계획</th>${c(15, `<div class="pre" style="min-height:6.5em">${esc(g ? '' : planText(t))}</div>`, 'colspan="5"')}</tr>
+   <tr><th class="blue">학생안전</th>${c(16, `<span class="blue">교외체험학습이 ${CONFIG.tripSafetyDays}일 이상 연속될 경우 학생의 건강과 안전을 위하여 주 1회 이상 학생이 담임(담당)교사와 직접 통화하겠습니다.</span>`, 'colspan="4"')}${c(16, `${!g && t.safety ? '☑' : '□'}<br>동의함`, 'style="text-align:center"')}</tr>
+   <tr><td colspan="6" class="cell" style="text-align:center">${F(17, `위와 같이 「학교장허가 교외체험학습」을 신청합니다.<br><b>20${bl(subDate[0])}년 ${bl(subDate[1])}월 ${bl(subDate[2])}일</b><div style="text-align:right;margin-top:.3em">보호자 : ${bl(p.gName,4)} ${sigHtml(t.sigMode, t.sigG, g)}(인)<br>학생 : ${bl(p.name,4)} ${sigHtml(t.sigMode, t.sigS, g)}(인)</div>`)}<div style="text-align:left;font-weight:700">${CONFIG.school}장 귀하</div></td></tr>
+  </table>
+  <div class="cut">(이하 담임 작성)</div>
+  ${F(18, `<div style="text-align:center;font-weight:700;font-size:1.1em">「학교장허가 교외체험학습」 통보서</div>
+   <table style="margin-top:.3em"><tr><th style="width:20%">성 명</th><td style="width:30%"></td><th style="width:15%">학년 반</th><td>제 &nbsp;&nbsp;학년 &nbsp;&nbsp;반 &nbsp;&nbsp;번</td></tr>
+   <tr><th>본교 출석인정기간<br>연간( ${CONFIG.tripAnnualDays} )일</th><td colspan="3">1일 기준: 20&nbsp;&nbsp;년 &nbsp;월 &nbsp;일 ~ &nbsp;월 &nbsp;일( &nbsp;)일간<br>반일 기준: 20&nbsp;&nbsp;년 &nbsp;월 &nbsp;일 &nbsp;시 &nbsp;분 ~ &nbsp;시 &nbsp;분( &nbsp;시간)</td></tr>
+   <tr><th style="font-size:.9em">금회까지 누적 사용기간<br>일반형태( &nbsp;)일<br>가정학습( &nbsp;)일</th><td colspan="3" style="text-align:center">위와 같이 허가 처리되었음을 알려 드립니다.<br>20&nbsp;&nbsp;. &nbsp;. &nbsp;.<br>${CONFIG.school} ( &nbsp;)학년 ( &nbsp;)반 담임교사 : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(인)<div style="text-align:right">보호자님 귀하</div></td></tr></table>`)}
+  <div class="foot-n">※ 보호자가 신청서를 제출하였다 하여 체험학습이 허가된 것이 아니며 <b>담임교사로부터 반드시 최종 허가 여부 통보서(또는 문자)를 받은 후 실시</b>해야 합니다.<br>※ 교외체험학습 실시 중에는 보호자와 담임(담당)교사 간 연락체계를 유지하고 사안(사고) 발생 시 보호자는 담임(담당)교사에게 연락을 하도록 합니다.<br><span class="blue">※ 교외체험학습이 ${CONFIG.tripSafetyDays}일 이상 연속될 경우 주1회 이상 학생이 담임(담당)교사와 직접 통화하여 건강과 안전을 확인시켜야 합니다. 미이행의 경우 시·군·구 아동복지과 또는 수사기관에 통보될 수 있음을 알려드립니다.</span></div>`;
+}
+
+function reportBody(r) {
+  const ds_ = reportDates(r);
+  return ds_.map(d => { const x = r.days[d] || {}; const parts = [x.did, x.learned, x.felt].map(v => (v || '').trim()).filter(Boolean); return parts.length ? '▸ ' + mdLong(d) + '\n' + parts.join(' ') : ''; }).filter(Boolean).join('\n\n');
+}
+function reportDates(r) { return tripDates({mode: r.mode, start: r.start, end: r.end, hDate: r.hDate}); }
+function formReport(g) {
+  const F = mk(g, 'report'), r = g ? DEF().report : S.report, p = g ? DEF().profile : S.profile;
+  const day = r.mode === 'day', half = r.mode === 'half';
+  const [y1,m1,d1] = day ? ymdParts(r.start) : ['','',''], [,m2,d2] = day ? ymdParts(r.end) : ['','',''];
+  const n = day && !g ? schoolDays(r.start, r.end) : '';
+  const [hy,hmn,hd] = half ? ymdParts(r.hDate) : ['','',''];
+  const subDate = g ? ['','',''] : ymdParts(todayS());
+  const c = (k, html, st) => `<td class="cell"${st ? ` ${st}` : ''}>${F(k, html)}</td>`;
+  return `
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:1em">
+   <div><div style="font-size:.95em">&lt;서식 2&gt;</div><div class="ttl" style="text-align:left;margin:.2em 0;font-size:1.45em">「학교장허가 교외체험학습」결과보고서</div></div>
+   ${gyeol(F,1,'담임','학년부장')}
+  </div>
+  <table style="margin-top:.5em">
+   <colgroup><col style="width:15%"><col style="width:17%"><col style="width:30%"><col style="width:13%"><col style="width:25%"></colgroup>
+   <tr><th>성 명</th>${c(2, bl(p.name,4), 'colspan="2"')}<th>학년 반</th>${c(2, `${bl(p.grade)}학년 ${bl(p.cls)}반 ${bl(p.num)}번`)}</tr>
+   <tr><th rowspan="2">기 간</th><th>1일 기준</th>${c(3, `20${bl(y1)}년 ${bl(m1)}월 ${bl(d1)}일 ~ ${bl(m2)}월 ${bl(d2)}일 ( ${bl(n)} )일간`, 'colspan="3"')}</tr>
+   <tr><th>반일 기준<br><span style="font-weight:400;font-size:.85em">(4시간 미만)</span></th>${c(3, `20${bl(hy)}년 ${bl(hmn)}월 ${bl(hd)}일 &nbsp; ${half ? esc(r.hFrom) + ' ~ ' + esc(r.hTo) : '00:00 ~ 00:00'}`, 'colspan="3"')}</tr>
+   <tr><th rowspan="2">목적지<br>및 동반자</th><th>목적지</th>${c(4, bl(r.dest,6), 'colspan="3"')}</tr>
+   <tr><th>보호자(동반자)</th>${c(4, bl(r.comp,6), 'colspan="3"')}</tr>
+   <tr><th>학습형태</th>${c(5, tripTypeHtml(r.type, r.typeEtc, g), 'colspan="4"')}</tr>
+   <tr><th>제 목</th>${c(6, bl(r.title,8), 'colspan="4"')}</tr>
+   <tr>${c(7, `<div style="font-size:.9em">* 교외체험학습을 통해 느낀 점, 배운 점 등을 글, 그림 등으로 학생이 체험 또는 학습한 내용을 기록합니다.<br>(사진, 티켓 등은 별지에 부착)</div><div class="pre" style="min-height:${g ? '9em' : '24em'};margin-top:.6em">${esc(g ? '' : reportBody(r))}</div>`, 'colspan="5"')}</tr>
+   <tr><td colspan="5" class="cell" style="text-align:center">${F(8, `위와 같이 「학교장허가 교외체험학습」 결과보고서를 제출합니다.<br>20${bl(subDate[0])}. ${bl(subDate[1])}. ${bl(subDate[2])}.<div style="text-align:right">보호자 : ${bl(p.gName,4)} ${sigHtml(r.sigMode, r.sigG, g)}(인)<br>학생 : ${bl(p.name,4)} ${sigHtml(r.sigMode, r.sigS, g)}(인)</div>`)}<div style="font-weight:700">${CONFIG.school}장 귀하</div></td></tr>
+  </table>`;
+}
+function formReportAnnex(g) {
+  const F = mk(g, 'report'), r = g ? DEF().report : S.report, p = g ? DEF().profile : S.profile;
+  const ph = [0,1,2,3].map(i => `<div class="phc"><div class="cap">증빙자료${i+1}(사진, 티켓 등)</div><div class="im">${!g && r.photos[i] ? `<img src="${r.photos[i]}" alt="증빙자료${i+1}">` : ''}</div></div>`).join('');
+  return `<div class="ttl" style="font-size:1.25em">「학교장허가 교외체험학습」 결과보고서 (별지)</div>
+  <table><tr><th style="width:15%">성 명</th><td class="cell" style="width:30%">${F(9, bl(p.name,4))}</td><th style="width:15%">학년 반</th><td class="cell">${F(9, `제 ${bl(p.grade)}학년 ${bl(p.cls)}반 ${bl(p.num)}번`)}</td></tr></table>
+  ${F(10, `<div class="phgrid">${ph}</div>`)}`;
+}
+function docPages(kind) {
+  if (kind === 'absence') return [{html: formAbsence(false)}];
+  if (kind === 'trip') return [{html: formTrip(false), dense: true}];
+  return [{html: formReport(false)}, {html: formReportAnnex(false)}];
+}
+
+/* ---------- 라우팅 ---------- */
+const ROUTES = {};
+let curRoute = '';
+function go(r) { if (location.hash === '#' + r) render(); else location.hash = r; }
+window.addEventListener('hashchange', () => render());
+function render(keepScroll) {
+  const r = (location.hash || '').slice(1) || 'home';
+  const fn = ROUTES[r] || ROUTES.home;
+  const y = window.scrollY;
+  const changed = r !== curRoute; curRoute = r;
+  closeSheet(true);
+  const v = fn();
+  $('#wrap').classList.toggle('wide', !!v.wide);
+  $('#appbar').className = 'appbar' + (v.hero ? ' hero' : '');
+  $('#appbar').innerHTML = (v.back ? `<a class="iconbtn" href="#${v.back}" aria-label="뒤로"><span aria-hidden="true" style="font-size:26px">‹</span></a>` : `<span style="width:8px"></span>`) + `<h1>${v.title}</h1>` + (r !== 'home' ? `<a class="iconbtn" href="#home">홈</a>` : '');
+  $('#app').innerHTML = v.body;
+  $('#footer').innerHTML = v.foot ? `<div class="foot">${v.foot}</div>` : '';
+  document.title = (v.title === '출결·체험학습 안내' ? '' : v.title.replace(/<[^>]+>/g,'') + ' · ') + '안성고 출결·체험학습 안내';
+  initSigs(); initPhotos();
+  if (changed && !keepScroll) { window.scrollTo(0, 0); } else { window.scrollTo(0, y); }
+}
+
+/* ---------- 홈 ---------- */
+ROUTES.home = () => {
+  const rem = [];
+  const a = S.absence, t = S.trip, rp = S.report;
+  if (a.start && a.reason === '질병' && !a.done) { const dl = addD(a.start, CONFIG.sickSubmitDays - 1); rem.push({k:'absence', t:'결석 증빙서류 제출', d:dl}); }
+  if (t.start && t.mode === 'day' && !t.done) rem.push({k:'trip', t:'체험학습 신청서 제출', d:addD(t.start, -CONFIG.tripApplyBefore)});
+  if (t.mode === 'half' && t.hDate && !t.done) rem.push({k:'trip', t:'체험학습 신청서 제출', d:addD(t.hDate, -CONFIG.tripApplyBefore)});
+  const endT = t.mode === 'half' ? t.hDate : t.end;
+  if (endT && !rp.done) rem.push({k:'report', t:'결과보고서 제출', d:addD(endT, CONFIG.tripReportWithin)});
+  const remH = rem.filter(x => dday(x.d) >= -7).map(x => `<div class="card remind"><div><b>${x.t}</b><span class="pill">${ddayTxt(dday(x.d))}</span><div class="small">${md(x.d)}까지</div></div><button class="btn ghost" style="min-height:44px;font-size:14px" data-act="done" data-k="${x.k}">제출했어요</button></div>`).join('');
+  return { title: '출결·체험학습 안내', hero: true, body: `
+   <section class="hero"><div class="sch">${CONFIG.school}</div><div class="ttl">출결·체험학습 도우미</div><div class="ds">필요한 서류를 쉽고 정확하게 준비해요</div></section>
+   <div class="tiles lift" role="group" aria-label="상황 선택">
+    <a class="tile t1" href="#absence-write" data-act="newAbs" data-reason="질병"><span class="ic">${ICON.sick}</span><span>아파서 결석·지각·<br>조퇴·결과했어요</span></a>
+    <a class="tile t2" href="#rules-family"><span class="ic">${ICON.family}</span><span>장례 등<br>경조사가 있어요</span></a>
+    <a class="tile t3" href="#trip-check"><span class="ic">${ICON.trip}</span><span>체험학습을<br>가려고 해요</span></a>
+    <a class="tile t4" href="#report-write"><span class="ic">${ICON.report}</span><span>체험학습을<br>다녀왔어요</span></a>
+   </div>
+   ${remH ? `<div class="secttl">다가오는 마감</div>${remH}` : ''}
+   <div class="secttl">전체 메뉴</div>
+   <nav class="menu" aria-label="메뉴">
+    <a href="#rules"><span class="no">1</span><span class="tx">출결 규정 안내<small>지각·조퇴·결과, 서류와 기한</small></span><span class="ar" aria-hidden="true">›</span></a>
+    <a href="#absence"><span class="no">2</span><span class="tx">근태신고서<small>결석·지각·조퇴·결과 신고</small></span><span class="ar" aria-hidden="true">›</span></a>
+    <a href="#trip-check"><span class="no">3</span><span class="tx">교외체험학습 신청서<small>요건 점검부터 신청서까지</small></span><span class="ar" aria-hidden="true">›</span></a>
+    <a href="#report"><span class="no">4</span><span class="tx">교외체험학습 결과보고서<small>다녀온 뒤 ${CONFIG.tripReportWithin}일 이내 제출</small></span><span class="ar" aria-hidden="true">›</span></a>
+   </nav>
+   <div class="note" style="font-size:14px">이 앱은 서류 안내·작성 도우미예요. 출결 처리는 학교가 최종 결정합니다. 입력한 내용은 <b>이 기기에만</b> 저장되고 학교 서버로 보내지지 않아요.</div>
+   <details class="acc"><summary>저장된 내용 지우기</summary><div class="body"><p class="small">이 기기에 저장된 학생·보호자 정보와 작성 중인 서류를 모두 지웁니다.</p><button class="btn ghost" data-act="wipe">모두 지우기</button></div></details>`};
+};
+
+/* ---------- 출결 규정 ---------- */
+function rulesBody(focusFamily) {
+  const fam = S._fam || {id:'d5', date: todayS(), next:false};
+  const f = FAMILY.find(x => x.id === fam.id) || FAMILY[2];
+  const start = fam.next ? addD(fam.date, 1) : fam.date;
+  const s0 = isOff(start) ? nthSchoolDay(start, 1) : start;
+  const end = nthSchoolDay(s0, f.days);
+  return `
+  <section class="fields" aria-labelledby="h-t"><h2 id="h-t">지각 · 조퇴 · 결과</h2>
+   <div class="card">
+    <div class="tl" aria-hidden="true"><div class="line"></div><div class="tick" style="left:14%"></div><div class="tick" style="left:86%"></div>
+     <div class="lb" style="left:6%;top:0">등교 ${CONFIG.startTime}</div><div class="lb" style="left:74%;top:0">하교 ${CONFIG.endTime}</div>
+     <div class="lb" style="left:0;top:42px;font-weight:400">← 지각</div><div class="lb" style="left:38%;top:42px;font-weight:400">조퇴 구간</div></div>
+    <div class="fields" style="gap:6px;font-size:15px">
+     <div><span class="tag">지각</span>등교 기준시간 ${CONFIG.startTime}까지 출석하지 않은 경우</div>
+     <div><span class="tag">조퇴</span>${CONFIG.startTime}~${CONFIG.endTime}(가정의 날 ${CONFIG.familyDayEnd}) 사이에 하교한 경우</div>
+     <div><span class="tag">결과</span>수업에 참여하지 않았거나, 교사의 사전 허락 없이 한 교시에 15분 이상 수업에 빠진 경우</div>
+    </div>
+    <p class="small" style="margin-top:10px">같은 날 여러 건이면 미인정을 먼저 적용하고, 같은 사안이면 마지막에 생긴 것 하나로 처리해요. 같은 날 결과는 여러 번이어도 1회예요.</p>
+   </div></section>
+  <section class="fields" aria-labelledby="h-k"><h2 id="h-k">결석의 종류</h2>
+   <div class="grid2">
+    <div class="card"><b>질병</b><div class="small">아파서 빠지고 증빙서류를 낸 경우</div></div>
+    <div class="card"><b>출석인정</b><div class="small">경조사, 학교장허가 체험학습 등</div></div>
+    <div class="card"><b>미인정</b><div class="small">정당한 사유가 없거나 서류를 내지 않은 경우</div></div>
+    <div class="card"><b>기타</b><div class="small">그 밖의 부득이한 사유</div></div>
+   </div>
+   <p class="small">지각·조퇴·결과도 같은 기준으로 질병·미인정·기타로 나눠 처리해요.</p></section>
+  <section class="fields" aria-labelledby="h-d"><h2 id="h-d">사유별 제출 서류 · 기한</h2>
+   <details class="acc" open><summary>질병결석</summary><div class="body">
+    <div><span class="tag">2일 이내</span>근태신고서 + 처방전·진료확인서·담임의견서·학부모의견서 중 해당 서류</div>
+    <div><span class="tag">3일 이상</span>근태신고서 + 의사소견서·진료확인서 등 병명·진료기간이 적힌 서류</div>
+    <div><b>결석 시작일부터 ${CONFIG.sickSubmitDays}일 이내</b>에 담임선생님께 제출</div>
+    <a class="btn" href="#absence-write" data-act="newAbs" data-reason="질병" style="margin-top:6px">근태신고서 쓰러 가기</a></div></details>
+   <details class="acc"><summary>질병결과</summary><div class="body">
+    <div>보건실 이용으로 15분 이상 수업에 빠졌다면 <b>보건실 이용확인서</b>를 내면 질병결과로 처리돼요.</div>
+    <div class="small">이용확인서를 내지 않으면 미인정결과로 처리돼요.</div></div></details>
+   <details class="acc" id="fam-acc"${focusFamily ? ' open' : ''}><summary>출석인정 (경조사)</summary><div class="body">
+    <div>근태신고서 + 사망확인서·가족관계증명서 등 증빙서류</div>
+    <div class="small">토·일·공휴일·재량휴업일은 일수에 넣지 않고, 사유가 생긴 날을 포함해 이어서 써요(나눠 쓰기 불가). 사망은 다음 날부터 시작할 수도 있어요.</div>
+    <a class="btn" href="#absence-write" data-act="newAbs" data-reason="경조사" style="margin-top:6px">근태신고서 쓰러 가기</a></div></details>
+   <details class="acc"><summary>출석인정 (학교장허가 교외체험학습)</summary><div class="body">
+    <div>신청서(시작 ${CONFIG.tripApplyBefore}일 전까지) + 결과보고서(종료 후 ${CONFIG.tripReportWithin}일 이내). <b>근태신고서는 필요 없어요.</b></div>
+    <div class="small">연간 ${CONFIG.tripAnnualDays}일, 일반형태(가족여행 등)는 최대 ${CONFIG.tripGeneralMax}일</div>
+    <a class="btn" href="#trip-check" style="margin-top:6px">체험학습 신청하러 가기</a></div></details>
+   <details class="acc"><summary>기타</summary><div class="body">
+    <div>법정감염병, 대회·외부 행사 참가, 미인정 결석 등 그 밖의 상황은 <b>담임선생님께 문의</b>해 주세요.</div></div></details>
+  </section>
+  <section class="fields" aria-labelledby="h-f" id="family"><h2 id="h-f">경조사 출석인정 일수 계산기</h2>
+   <div class="card fields">
+    <div class="field"><label class="f" for="famSel">구분 · 대상</label>
+     <select class="in" id="famSel" data-fam="id">${FAMILY.map(x => `<option value="${x.id}"${x.id === f.id ? ' selected' : ''}>${x.g} · ${x.who} (${x.days}일)</option>`).join('')}</select></div>
+    <div class="field"><label class="f" for="famDate">사유 발생일</label><input class="in" type="date" id="famDate" data-fam="date" value="${esc(fam.date)}"></div>
+    ${f.g === '사망' ? `<label class="cb"><input type="checkbox" data-fam="next"${fam.next ? ' checked' : ''}> 다음 날부터 시작하기</label>` : ''}
+    <div class="card strong" aria-live="polite"><b style="font-size:18px">출석인정 ${f.days}일</b><div style="font-size:17px">${md(s0)} ~ ${md(end)}</div><div class="small">토·일·공휴일 제외, 이어서 사용</div></div>
+    ${f.check ? `<div class="note warn">이 항목은 학교 안내 자료마다 일수가 달라 확인 중이에요. 담임선생님께 꼭 확인해 주세요.</div>` : ''}
+   </div>
+   <table style="width:100%;border-collapse:collapse;font-size:14px" aria-label="경조사 출석인정 일수표">
+    <thead><tr><th style="border-bottom:2px solid var(--ink);text-align:left;padding:6px">구분</th><th style="border-bottom:2px solid var(--ink);text-align:left;padding:6px">대상</th><th style="border-bottom:2px solid var(--ink);padding:6px">일수</th></tr></thead>
+    <tbody>${FAMILY.map(x => `<tr><td style="border-bottom:1px solid var(--line);padding:6px">${x.g}</td><td style="border-bottom:1px solid var(--line);padding:6px">${x.who}${x.check ? ' *' : ''}</td><td style="border-bottom:1px solid var(--line);padding:6px;text-align:center">${x.days}</td></tr>`).join('')}</tbody></table>
+  </section>
+  <section class="fields" aria-labelledby="h-q"><h2 id="h-q">자주 묻는 질문</h2>
+   <details class="acc"><summary>보건실에 있다가 수업에 늦었어요</summary><div class="body">한 교시에 15분 이상 빠졌다면 결과예요. 보건실 이용확인서를 내면 질병결과, 내지 않으면 미인정결과로 처리돼요.</div></details>
+   <details class="acc"><summary>체험학습도 근태신고서를 내나요?</summary><div class="body">아니요. 학교장허가 교외체험학습은 신청서와 결과보고서만 내면 돼요.</div></details>
+   <details class="acc"><summary>같은 날 지각도 하고 조퇴도 했어요</summary><div class="body">미인정이 있으면 미인정을 먼저 적용하고, 같은 사안이면 마지막에 생긴 것 하나로 처리해요.</div></details>
+   <details class="acc"><summary>서류를 기한 안에 못 냈어요</summary><div class="body">늦어진 사정을 담임선생님께 바로 말씀드리고 처리 방법을 문의해 주세요.</div></details>
+  </section>`;
+}
+ROUTES.rules = () => ({title: '출결 규정 안내', back: 'home', body: rulesBody(false)});
+ROUTES['rules-family'] = () => { setTimeout(() => { const e = $('#family'); if (e) e.scrollIntoView(); }, 30); return {title: '출결 규정 안내', back: 'home', body: rulesBody(true)}; };
+
+/* ---------- 양식 안내 화면 ---------- */
+function guideView(kind, title, back, writeRoute, pre) {
+  const forms = kind === 'absence' ? [formAbsence(true)] : kind === 'trip' ? [formTrip(true)] : [formReport(true), formReportAnnex(true)];
+  const items = Object.entries(GUIDE[kind]).map(([n, x]) => `<div class="it" data-g="${kind}" data-n="${n}" role="button" tabindex="0"><span class="nb">${n}</span><div><b style="font-size:15px">${esc(x.t)}</b><span class="kk ${x.k}">${KL[x.k]}</span><div class="small" style="color:var(--ink)">${esc(x.w)}</div>${x.ex ? `<div class="small pre">예) ${esc(x.ex)}</div>` : ''}</div></div>`).join('');
+  return { title, back, wide: true, body: `
+   <nav class="seg" aria-label="보기 방식"><a href="#${curRoute}" aria-current="page">작성 안내 보기</a><a href="#${writeRoute}">쉽게 작성하기</a></nav>
+   ${pre || ''}
+   <div class="legend"><span><span class="lg req"></span>필수</span><span><span class="lg opt"></span>해당 시</span><span><span class="lg ro"></span>읽기만</span><span><span class="lg no"></span>작성 안 함</span><span style="color:var(--blue);font-weight:700">칸을 누르면 작성 방법이 나와요</span></div>
+   <div class="guide-layout">
+    <div class="fields">${forms.map(f => `<div class="paper g">${f}</div>`).join('')}</div>
+    <aside class="side card" aria-label="칸별 작성 안내"><h3 style="margin-bottom:6px">칸별 작성 안내</h3>${items}</aside>
+   </div>`,
+   foot: `<a class="btn pri" href="#${writeRoute}">쉽게 작성하기</a>` };
+}
+ROUTES.absence = () => guideView('absence', '근태신고서', 'home', 'absence-write', `<div class="note">교외체험학습·법정감염병·대회 참가처럼 내부결재로 처리하는 출석인정은 <b>근태신고서를 쓰지 않아요.</b></div>`);
+ROUTES.trip = () => guideView('trip', '체험학습 신청서', 'trip-check', 'trip-write', `<div class="note warn">신청서를 냈다고 바로 허가된 것이 아니에요. <b>담임선생님께 허가 통보서(또는 문자)를 받은 뒤</b> 출발하세요.</div>`);
+ROUTES.report = () => guideView('report', '체험학습 결과보고서', 'home', 'report-write', '');
+
+function openSheet(kind, n) {
+  n = Number(n); const x = GUIDE[kind][n]; if (!x) return;
+  const max = Object.keys(GUIDE[kind]).length;
+  document.querySelectorAll('.fld.on,.side .it.on').forEach(e => e.classList.remove('on'));
+  document.querySelectorAll(`[data-g="${kind}"][data-n="${n}"]`).forEach(e => e.classList.add('on'));
+  if (window.matchMedia('(min-width:900px)').matches) { const it = document.querySelector(`.side .it[data-n="${n}"]`); if (it) it.scrollIntoView({block:'nearest'}); return; }
+  const sh = $('#sheet');
+  sh.innerHTML = `<div class="grab" aria-hidden="true"></div>
+   <div style="display:flex;align-items:center;gap:8px"><span class="nb" style="width:28px;height:28px;border-radius:50%;background:var(--blue);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center">${n}</span><b id="sheetTitle" style="font-size:18px;flex:1">${esc(x.t)}</b><span class="kk ${x.k}">${KL[x.k]}</span></div>
+   <div><div class="small" style="font-weight:700">무엇을 쓰나요</div><div style="font-size:16px">${esc(x.w)}</div></div>
+   ${x.ex ? `<div class="ex"><div class="small" style="font-weight:700">작성 예시</div><div class="pre" style="font-size:16px">${esc(x.ex)}</div></div>` : ''}
+   ${x.m ? `<div><div class="small" style="font-weight:700">자주 하는 실수</div><div style="font-size:16px">${esc(x.m)}</div></div>` : ''}
+   <div class="row"><button class="btn ghost" data-act="sheetNav" data-k="${kind}" data-n="${n-1}"${n <= 1 ? ' disabled' : ''}>‹ ${n-1 >= 1 ? n-1 + '번 칸' : '이전'}</button><button class="btn ghost" data-act="sheetNav" data-k="${kind}" data-n="${n+1}"${n >= max ? ' disabled' : ''}>${n < max ? n+1 + '번 칸' : '다음'} ›</button></div>
+   <button class="btn pri" data-act="sheetClose">닫기</button>`;
+  sh.classList.add('show'); $('#scrim').classList.add('show');
+  setTimeout(() => { const b = sh.querySelector('[data-act=sheetClose]'); if (b) b.focus(); }, 50);
+}
+function closeSheet(silent) { $('#sheet').classList.remove('show'); $('#scrim').classList.remove('show'); if (!silent) document.querySelectorAll('.fld.on').forEach(e => { e.classList.remove('on'); }); }
+$('#scrim').addEventListener('click', () => closeSheet());
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeSheet();
+  if ((e.key === 'Enter' || e.key === ' ') && e.target.matches && e.target.matches('[data-g][data-n]')) { e.preventDefault(); openSheet(e.target.dataset.g, e.target.dataset.n); }
+});
+
+/* ---------- 공통: 단계 화면 ---------- */
+function stepView(o) {
+  return { title: o.title, back: o.back, body: `
+   <nav class="seg" aria-label="보기 방식"><a href="#${o.guide}">작성 안내 보기</a><a href="#${curRoute}" aria-current="page">쉽게 작성하기</a></nav>
+   <div><div class="stepinfo"><span>${o.stepName}</span><span>${o.step} / ${o.total}</span></div><div class="progress" role="progressbar" aria-valuemin="1" aria-valuemax="${o.total}" aria-valuenow="${o.step}" aria-label="진행 단계"><i style="width:${o.step / o.total * 100}%"></i></div></div>
+   ${o.body}`,
+   foot: `${o.step > 1 ? `<button class="btn ghost" data-act="step" data-k="${o.kind}" data-d="-1">이전</button>` : `<button class="btn ghost" data-act="saveDraft">저장</button>`}<button class="btn pri" data-act="${o.nextAct || 'step'}" data-k="${o.kind}" data-d="1"${o.nextDisabled ? ' disabled' : ''}>${o.nextLabel || '다음'}</button>` };
+}
+const opt = (path, val, label, small) => `<button class="choice" data-act="set" data-p="${path}" data-v="${esc(val)}" aria-pressed="${getp(path) === val}">${label}${small ? '' : ''}</button>`;
+const optL = (path, val, label, small) => `<button class="choice" data-act="set" data-p="${path}" data-v="${esc(val)}" aria-pressed="${getp(path) === val}"><span>${label}${small ? `<small>${small}</small>` : ''}</span></button>`;
+const chip = (path, val, label) => `<button class="chip" data-act="set" data-p="${path}" data-v="${esc(val)}" aria-pressed="${getp(path) === val}">${label || val}</button>`;
+const tchip = (path, val, label) => `<button class="chip" data-act="toggle" data-p="${path}" data-v="${esc(val)}" aria-pressed="${(getp(path) || []).includes(isNaN(val) ? val : Number(val))}">${label || val}</button>`;
+const inp = (path, label, attrs) => { const id = 'i-' + path.replace(/\./g,'-'); return `<div class="field"><label class="f" for="${id}">${label}</label><input class="in" id="${id}" data-p="${path}" value="${esc(getp(path))}" ${attrs || ''}></div>`; };
+const sigPad = (path, label) => `<div class="field"><div class="f">${label}</div><div class="sigwrap"><canvas class="sigpad" data-sig="${path}" aria-label="${label} 서명 칸"></canvas>${getp(path) ? '' : '<div class="ph">여기에 손가락으로 서명하세요</div>'}<button class="btn ghost clear" data-act="sigClear" data-p="${path}">지우기</button></div></div>`;
+function profileFields(withPhone) {
+  return `<div class="grid2" style="grid-template-columns:repeat(3,minmax(0,1fr))">${inp('profile.grade','학년','inputmode="numeric" maxlength="1"')}${inp('profile.cls','반','inputmode="numeric" maxlength="2"')}${inp('profile.num','번호','inputmode="numeric" maxlength="2"')}</div>
+   ${inp('profile.name','학생 이름','autocomplete="name"')}${withPhone ? inp('profile.phone','학생 휴대폰','inputmode="tel" placeholder="010-0000-0000"') : ''}`;
+}
+const profOk = (phone) => { const p = S.profile; return p.grade && p.cls && p.num && p.name && (!phone || p.phone); };
+
+/* ---------- 근태신고서: 쉽게 작성 ---------- */
+const SYM = ['고열','복통','두통','감기 몸살','구토·설사','어지럼증','치통','다침'];
+const ACT = ['병원 진료','약 복용','집에서 안정'];
+function absenceAuto() {
+  const a = S.absence;
+  if (a.edited) return;
+  let s = '';
+  if (a.reason === '질병' && (a.sym.length || a.act.length)) {
+    const sy = a.sym.join('·');
+    s = (sy ? sy + josa(sy, '으로', '로') + ' ' : '') + (a.act.length ? a.act.join(' 후 ') + '함.' : '');
+    if (!a.act.length && sy) s = sy + josa(sy, '으로', '로') + ' ' + (a.type === '결석' ? '등교하지 못함.' : a.type === '조퇴' ? '조퇴함.' : a.type === '지각' ? '늦게 등교함.' : '수업에 참여하지 못함.');
+  } else if (a.reason === '경조사' && a.famEvent) {
+    const rel = (a.rel || '').trim();
+    s = a.famEvent === '사망' ? (rel ? rel + ' 사망으로 ' : '') + '장례에 참석함.' : a.famEvent === '결혼' ? (rel ? rel + ' ' : '') + '결혼식에 참석함.' : '입양 관련으로 출석하지 못함.';
+  }
+  a.content = s;
+}
+function absenceDocs() {
+  const a = S.absence;
+  if (a.reason === '질병') {
+    const d = a.type === '결석' ? schoolDays(a.start, a.end) : 1;
+    const list = d >= 3 ? ['의사소견서','진료확인서','그 밖의 병명·진료기간이 적힌 서류'] : ['처방전','진료확인서','담임의견서','학부모의견서'];
+    return {list, need: d >= 3 ? '병명·진료기간이 적힌 서류' : '하나 이상', note: a.type === '결과' ? '보건실 이용 때문이라면 보건실 이용확인서를 함께 내 주세요.' : ''};
+  }
+  if (a.reason === '경조사') return {list: a.famEvent === '사망' ? ['사망확인서','가족관계증명서'] : ['가족관계증명서','그 밖의 증빙서류'], need: '해당 서류', note: ''};
+  return {list: [], need: '', note: '어떤 서류가 필요한지 담임선생님께 문의해 주세요.'};
+}
+ROUTES['absence-write'] = () => {
+  const a = S.absence, st = a.step, T = 5;
+  const base = {title: '근태신고서', back: 'home', guide: 'absence', kind: 'absence', step: st, total: T};
+  if (st === 1) return stepView(Object.assign(base, {stepName: '어떤 일이었나요', nextDisabled: !(a.type && a.reason), body: `
+   <p class="q">어떤 일이 있었나요?</p>
+   <div class="choices">${optL('absence.type','결석','결석','하루 종일 학교에 못 갔어요')}${optL('absence.type','지각','지각',CONFIG.startTime + '보다 늦게 갔어요')}${optL('absence.type','조퇴','조퇴','수업 중간에 집에 왔어요')}${optL('absence.type','결과','결과','수업 일부만 빠졌어요 (보건실 등)')}</div>
+   <div class="f" style="margin-top:4px">왜 그랬나요?</div>
+   <div class="chips">${chip('absence.reason','질병','아파서')}${chip('absence.reason','경조사','장례·경조사')}${chip('absence.reason','기타','그 밖의 이유')}</div>
+   ${a.reason === '기타' ? `<div class="note warn">그 밖의 이유는 처리 기준이 상황마다 달라요. 쓰기 전에 <b>담임선생님께 먼저 문의</b>해 주세요.</div>` : ''}
+   <div class="note">체험학습이라면 근태신고서가 필요 없어요. <a href="#trip-check">체험학습 신청서로 가기 ›</a></div>`}));
+  if (st === 2) {
+    const t = todayS();
+    let body;
+    if (a.type === '결석') {
+      const n = schoolDays(a.start, a.end);
+      body = `<p class="q">언제 결석했나요?</p>
+       <div class="chips"><button class="chip" data-act="quickDate" data-v="0">오늘</button><button class="chip" data-act="quickDate" data-v="-1">어제</button><button class="chip" data-act="quickDate" data-v="-2">어제·오늘 이틀</button></div>
+       <div class="grid2"><div class="field"><label class="f" for="a-s">시작일</label><input class="in" type="date" id="a-s" data-p="absence.start" data-rr value="${esc(a.start)}"></div><div class="field"><label class="f" for="a-e">끝난 날</label><input class="in" type="date" id="a-e" data-p="absence.end" data-rr value="${esc(a.end)}"></div></div>
+       ${a.start && a.end && a.end < a.start ? `<div class="note warn">끝난 날이 시작일보다 빨라요.</div>` : ''}
+       ${a.start && a.end && a.end >= a.start ? `<div class="card strong"><div class="kv"><span>기간</span><b>${md(a.start)} ~ ${md(a.end)}</b></div><div class="kv"><span>일수 <span class="small">토·일·공휴일 제외</span></span><b>${n}일간</b></div>${a.reason === '질병' ? `<div class="kv"><span>서류 제출 마감</span><b>${md(addD(a.start, CONFIG.sickSubmitDays-1))} · ${ddayTxt(dday(addD(a.start, CONFIG.sickSubmitDays-1)))}</b></div>` : ''}</div>` : ''}`;
+    } else {
+      body = `<p class="q">언제 ${a.type}했나요?</p>
+       <div class="chips"><button class="chip" data-act="quickDate" data-v="0">오늘</button><button class="chip" data-act="quickDate" data-v="-1">어제</button></div>
+       <div class="field"><label class="f" for="a-s1">날짜</label><input class="in" type="date" id="a-s1" data-p="absence.start" data-rr value="${esc(a.start)}"></div>
+       <div class="f">빠진 교시를 모두 눌러 주세요</div>
+       <div class="chips">${[1,2,3,4,5,6,7].map(i => tchip('absence.periods', String(i), i + '교시')).join('')}</div>`;
+    }
+    const whenAuto = a.start ? (a.start > t ? '하고자' : '하였으므로') : '';
+    if (!a.when && whenAuto) a.when = whenAuto;
+    body += a.start ? `<div class="f">신고서를 내는 시점</div><div class="chips">${chip('absence.when','하였으므로','이미 빠진 뒤에 내요')}${chip('absence.when','하고자','미리 내요')}</div>` : '';
+    const ok = a.type === '결석' ? (a.start && a.end && a.end >= a.start) : (a.start && a.periods.length);
+    return stepView(Object.assign(base, {stepName: '언제', nextDisabled: !ok, body}));
+  }
+  if (st === 3) {
+    let body;
+    if (a.reason === '질병') body = `<p class="q">어디가 아팠나요?</p><p class="sub">눌러서 넣고, 필요하면 아래 문장을 고쳐 쓰세요.</p>
+      <div class="chips">${SYM.map(s => tchip('absence.sym', s)).join('')}</div>
+      <div class="f">어떻게 했나요?</div><div class="chips">${ACT.map(s => tchip('absence.act', s)).join('')}</div>`;
+    else if (a.reason === '경조사') body = `<p class="q">어떤 경조사인가요?</p>
+      <div class="chips">${chip('absence.famEvent','사망','장례(사망)')}${chip('absence.famEvent','결혼','결혼')}${chip('absence.famEvent','입양','입양')}</div>
+      ${a.famEvent && a.famEvent !== '입양' ? `<div class="field"><label class="f" for="a-rel">학생과의 관계</label><input class="in" id="a-rel" data-p="absence.rel" data-auto placeholder="예) 친조모, 외삼촌, 형" value="${esc(a.rel)}"></div>` : ''}
+      <a class="small" href="#rules-family">경조사별 출석인정 일수 확인하기 ›</a>`;
+    else body = `<p class="q">어떤 일이었나요?</p><p class="sub">이유를 한두 문장으로 구체적으로 써 주세요.</p>`;
+    body += `<div class="field"><label class="f" for="a-c">신고서에 들어갈 문장 (1. 내용)</label><textarea class="in" id="a-c" data-p="absence.content" data-edit="absence.edited" placeholder="예) 새벽부터 고열이 있어 병원 진료 후 집에서 안정함.">${esc(a.content)}</textarea></div>
+      ${a.edited ? `<button class="chip" data-act="resetAuto" style="align-self:flex-start">눌러서 만든 문장으로 되돌리기</button>` : ''}
+      ${a.reason === '질병' ? `<p class="small">밝히기 어려운 병명은 쓰지 않아도 돼요.</p>` : ''}`;
+    return stepView(Object.assign(base, {stepName: '내용', nextDisabled: !(a.content || '').trim(), body}));
+  }
+  if (st === 4) return stepView(Object.assign(base, {stepName: '학생·보호자', nextDisabled: !(profOk() && S.profile.gName), body: `
+   <p class="q">학생과 보호자 정보</p><p class="sub">한 번 입력하면 이 기기에 기억돼요.</p>
+   <div class="fields">${profileFields(false)}${inp('profile.gName','보호자 이름')}</div>`}));
+  const D = absenceDocs();
+  return stepView(Object.assign(base, {stepName: '서류·서명', nextAct: 'toDoc', nextLabel: '양식으로 확인', body: `
+   <p class="q">마지막 단계예요</p>
+   <div class="card"><div class="kv"><span>종류</span><b>${a.type} · ${a.reason}</b></div><div class="kv"><span>기간</span><b>${a.type === '결석' ? md(a.start) + ' ~ ' + md(a.end) + ' · ' + schoolDays(a.start, a.end) + '일간' : md(a.start) + ' · ' + periodTxt(a.periods) + '교시'}</b></div>${a.reason === '질병' ? `<div class="kv"><span>제출 마감</span><b>${md(addD(a.start, CONFIG.sickSubmitDays-1))} · ${ddayTxt(dday(addD(a.start, CONFIG.sickSubmitDays-1)))}</b></div>` : ''}</div>
+   ${D.list.length ? `<div><div class="f">함께 낼 서류 <span class="small">${D.need}</span></div>${D.list.map(x => `<label class="cb"><input type="checkbox" data-act="toggleCb" data-p="absence.docs" value="${esc(x)}"${a.docs.includes(x) ? ' checked' : ''}> ${esc(x)}</label>`).join('')}</div>` : ''}
+   ${D.note ? `<div class="note">${D.note}</div>` : ''}
+   <div class="f">보호자 서명</div><div class="chips">${chip('absence.sigMode','pad','화면에 서명')}${chip('absence.sigMode','paper','출력 후 직접 서명')}</div>
+   ${a.sigMode === 'pad' ? sigPad('absence.sig', '보호자 서명') : ''}`}));
+};
+
+/* ---------- 체험학습: 요건 점검 ---------- */
+ROUTES['trip-check'] = () => {
+  const t = S.trip;
+  const used = parseFloat(t.used) || 0, usedGen = parseFloat(t.usedGen) || 0;
+  const days = tripDays(t), left = CONFIG.tripAnnualDays - used;
+  const a = t.mode === 'half' ? t.hDate : t.start, b = t.mode === 'half' ? t.hDate : t.end;
+  const has = a && b && b >= a;
+  const ban = has ? overlapBan(a, b) : [];
+  const general = t.type ? ['가족동반여행','친·인척 방문'].includes(t.type) : null;
+  const chk = [];
+  if (has) {
+    chk.push(days + used <= CONFIG.tripAnnualDays ? ['✓', `총 <b>${days}일</b> · 남은 ${left}일 안에 들어가요`] : ['!', `총 ${days}일로 남은 ${left}일을 넘어요. 담임선생님께 문의해 주세요.`]);
+    if (general) chk.push(days + usedGen <= CONFIG.tripGeneralMax ? ['✓', `일반형태 연간 ${CONFIG.tripGeneralMax}일 안이에요`] : ['!', `일반형태는 연간 최대 ${CONFIG.tripGeneralMax}일이에요. 담임선생님께 문의해 주세요.`]);
+    chk.push(ban.length ? ['!', `불허기간과 겹쳐요: ${ban.map(x => esc(x.name)).join(', ')}`] : ['✓', CONFIG.banPeriods.length ? '불허기간과 겹치지 않아요' : '불허기간은 담임선생님께 꼭 확인해 주세요']);
+    const ap = addD(a, -CONFIG.tripApplyBefore);
+    chk.push([dday(ap) >= 0 ? '!' : '×', `신청서 제출: <b>${md(ap)}까지</b> (시작 ${CONFIG.tripApplyBefore}일 전) · ${ddayTxt(dday(ap))}`]);
+    chk.push(['!', `결과보고서 제출: <b>${md(addD(b, CONFIG.tripReportWithin))}까지</b> (종료 후 ${CONFIG.tripReportWithin}일 이내)`]);
+    chk.push(t.mode === 'day' && schoolDays(a,b) >= CONFIG.tripSafetyDays ? ['!', `${CONFIG.tripSafetyDays}일 이상 연속이에요. 주 1회 이상 학생이 담임선생님과 직접 통화해야 해요.`] : ['–', `${CONFIG.tripSafetyDays}일 미만이라 주 1회 통화 동의는 해당 없어요`]);
+  }
+  return { title: '체험학습 신청 · 요건 점검', back: 'home', body: `
+   <div class="card fields">
+    <div><b>올해 남은 일수</b><div class="small">올해 이미 쓴 체험학습 일수를 넣어 주세요 (반일은 0.5)</div></div>
+    <div class="grid2">${inp('trip.used','올해 쓴 일수','inputmode="decimal" placeholder="0"')}${inp('trip.usedGen','그중 일반형태','inputmode="decimal" placeholder="0"')}</div>
+    <div data-live="tc-sum" class="fields" style="gap:8px"><div class="progress" aria-hidden="true"><i style="width:${Math.min(100, used / CONFIG.tripAnnualDays * 100)}%"></i></div>
+    <div style="display:flex;justify-content:space-between;font-size:15px"><span>연간 ${CONFIG.tripAnnualDays}일 중 ${used}일 사용</span><b>남은 ${left}일</b></div></div>
+    <p class="small">일반형태(가족동반여행·친인척 방문)는 연간 최대 ${CONFIG.tripGeneralMax}일이에요.</p>
+   </div>
+   <div class="card fields">
+    <b>언제 가나요?</b>
+    <div class="chips">${chip('trip.mode','day','하루 이상')}${chip('trip.mode','half','반일 (4시간 미만)')}</div>
+    ${t.mode === 'day' ? `<div class="grid2"><div class="field"><label class="f" for="t-s">시작일</label><input class="in" type="date" id="t-s" data-p="trip.start" data-rr value="${esc(t.start)}"></div><div class="field"><label class="f" for="t-e">끝나는 날</label><input class="in" type="date" id="t-e" data-p="trip.end" data-rr value="${esc(t.end)}"></div></div>`
+     : `<div class="field"><label class="f" for="t-h">날짜</label><input class="in" type="date" id="t-h" data-p="trip.hDate" data-rr value="${esc(t.hDate)}"></div><div class="grid2"><div class="field"><label class="f" for="t-hf">시작 시각</label><input class="in" type="time" id="t-hf" data-p="trip.hFrom" value="${esc(t.hFrom)}"></div><div class="field"><label class="f" for="t-ht">끝 시각</label><input class="in" type="time" id="t-ht" data-p="trip.hTo" value="${esc(t.hTo)}"></div></div>`}
+    ${t.mode === 'day' && t.start && t.end && t.end < t.start ? `<div class="note warn">끝나는 날이 시작일보다 빨라요.</div>` : ''}
+   </div>
+   <div data-live="tc-res" class="fields" aria-live="polite">${has ? `<div class="card strong"><b>점검 결과</b>${chk.map(c => `<div class="chk"><span class="m">${c[0]}</span><span>${c[1]}</span></div>`).join('')}</div>
+   <div class="note warn">신청서를 냈다고 바로 허가된 것이 아니에요. <b>담임선생님께 허가 통보서(또는 문자)를 받은 뒤</b> 출발하세요.</div>` : ''}</div>
+   <div class="row"><a class="btn" href="#trip">양식 안내 보기</a></div>`,
+   foot: `<a class="btn pri${has ? '' : ' disabled'}" href="#trip-write" ${has ? '' : 'aria-disabled="true" data-act="needDates"'}>신청서 작성하기</a>` };
+};
+
+/* ---------- 체험학습: 쉽게 작성 ---------- */
+const THEMES = ['역사 유적','자연환경','지역 문화','진로 현장','박물관·전시','가족 행사'];
+const SUBJ = ['한국사','통합사회','과학','국어','지리','진로'];
+function tripPurposeAuto() {
+  const t = S.trip; if (t.pEdited) return;
+  const dest = (t.dest || '').trim(); const th = t.theme, sj = t.subject;
+  if (!dest && !th) { t.purpose = ''; return; }
+  const place = dest ? dest.split(' ').pop() : '현장';
+  t.purpose = th === '가족 행사' ? `${place}에서 가족 행사에 참여하며 가족 공동체의 의미를 되새긴다.`
+    : `${place}의 ${th || '여러 장소'}${josa(th || '장소', '을', '를')} 직접 보고 체험하며${sj ? ' ' + sj + '에서 배운 내용을 확인한다.' : ' 새로운 것을 배운다.'}`;
+}
+ROUTES['trip-write'] = () => {
+  const t = S.trip, st = t.step, T = 4, p = S.profile;
+  const base = {title: '체험학습 신청서', back: 'trip-check', guide: 'trip', kind: 'trip', step: st, total: T};
+  const dates = tripDates(t);
+  const dateOk = dates.length > 0;
+  if (!dateOk) return { title: '체험학습 신청서', back: 'trip-check', body: `<div class="note warn">먼저 요건 점검에서 기간을 골라 주세요.</div><a class="btn pri" href="#trip-check">요건 점검으로 가기</a>` };
+  const period = t.mode === 'half' ? md(t.hDate) + ' ' + t.hFrom + '~' + t.hTo + ' · 0.5일' : md(t.start) + ' ~ ' + md(t.end) + ' · ' + tripDays(t) + '일';
+  if (st === 1) return stepView(Object.assign(base, {stepName: '형태·장소', nextDisabled: !(t.type && t.dest && t.stay && (t.type !== '체험활동' || t.typeEtc) && (t.stay !== 'y' || t.stayPlace)), body: `
+   <div class="note">요건 점검에서 고른 기간: <b>${period}</b> <a href="#trip-check">바꾸기</a></div>
+   <p class="q">어떤 체험학습인가요?</p>
+   <div class="grid2">${optL('trip.type','가족동반여행','가족동반여행','가족과 함께 여행')}${optL('trip.type','친·인척 방문','친·인척 방문','친척 집 방문')}${optL('trip.type','답사∙견학 활동','답사·견학 활동','유적·기관 견학')}${optL('trip.type','체험활동','체험활동','직접 입력')}</div>
+   ${t.type === '체험활동' ? inp('trip.typeEtc','어떤 체험활동인가요?','placeholder="예) 대학 전공 체험"') : ''}
+   ${inp('trip.dest','어디로 가나요? (목적지)','placeholder="예) 경상북도 경주시" data-auto')}
+   <div class="f">자고 오나요?</div><div class="chips">${chip('trip.stay','y','네, 자고 와요')}${chip('trip.stay','n','아니요')}</div>
+   ${t.stay === 'y' ? inp('trip.stayPlace','숙박장소','placeholder="예) ○○호텔, 친척 집"') : ''}`}));
+  if (st === 2) {
+    return stepView(Object.assign(base, {stepName: '목적·계획', nextDisabled: !((t.purpose || '').trim() && dates.some(d => (t.plan[d] || '').trim())), body: `
+     <p class="q">무엇을 배우고 싶나요?</p><p class="sub">고르면 목적 문장이 만들어져요. 아래에서 고쳐 써도 돼요.</p>
+     <div class="f">무엇을 보나요?</div><div class="chips">${THEMES.map(x => chip('trip.theme', x)).join('')}</div>
+     <div class="f">관련 과목 <span class="small">선택</span></div><div class="chips">${SUBJ.map(x => chip('trip.subject', x)).join('')}</div>
+     <div class="field"><label class="f" for="t-pur">목적</label><textarea class="in" id="t-pur" data-p="trip.purpose" data-edit="trip.pEdited">${esc(t.purpose)}</textarea></div>
+     ${t.pEdited ? `<button class="chip" data-act="resetPurpose" style="align-self:flex-start">고른 내용으로 다시 만들기</button>` : ''}
+     <div class="f" style="margin-top:6px">날짜별 계획 <span class="small">날짜는 자동으로 채워져요</span></div>
+     ${dates.map((d, i) => `<div class="field"><label class="f" for="pl${i}" style="font-weight:500">${mdLong(d)}</label><input class="in" id="pl${i}" data-plan="${d}" value="${esc(t.plan[d] || '')}" placeholder="${i === 0 ? '예) 불국사·석굴암 답사' : '예) 국립경주박물관 관람'}"></div>`).join('')}`}));
+  }
+  if (st === 3) {
+    const needSafety = t.mode === 'day' && schoolDays(t.start, t.end) >= CONFIG.tripSafetyDays;
+    const ok = profOk(true) && p.gName && p.gRel && p.gPhone && (t.leaderSame || (t.lName && t.lRel && t.lPhone)) && t.ruleOk && (!needSafety || t.safety);
+    return stepView(Object.assign(base, {stepName: '학생·보호자', nextDisabled: !ok, body: `
+     <p class="q">누구와 함께 가나요?</p><p class="sub">한 번 입력한 정보는 이 기기에 기억돼요.</p>
+     <div class="card fields"><b>학생</b>${profileFields(true)}</div>
+     <div class="card fields"><b>보호자</b>${inp('profile.gName','보호자 이름')}<div class="grid2">${inp('profile.gRel','관계','placeholder="예) 어머니"')}${inp('profile.gPhone','휴대폰','inputmode="tel"')}</div></div>
+     <div class="f">인솔자 (실제로 함께 가는 사람)</div><div class="chips"><button class="chip" data-act="setb" data-p="trip.leaderSame" data-v="1" aria-pressed="${!!t.leaderSame}">보호자와 같아요</button><button class="chip" data-act="setb" data-p="trip.leaderSame" data-v="0" aria-pressed="${!t.leaderSame}">다른 사람이에요</button></div>
+     ${t.leaderSame ? '' : `<div class="card fields">${inp('trip.lName','인솔자 이름')}<div class="grid2">${inp('trip.lRel','관계','placeholder="예) 이모"')}${inp('trip.lPhone','휴대폰','inputmode="tel"')}</div></div>`}
+     <label class="cb"><input type="checkbox" data-act="cbBool" data-p="trip.ruleOk"${t.ruleOk ? ' checked' : ''}> 학교의 세부 규칙과 불허기간을 확인했어요</label>
+     ${needSafety ? `<label class="cb"><input type="checkbox" data-act="cbBool" data-p="trip.safety"${t.safety ? ' checked' : ''}> ${CONFIG.tripSafetyDays}일 이상 연속이라 주 1회 이상 학생이 담임선생님과 직접 통화하겠습니다 (학생안전 동의)</label>` : `<p class="small">${CONFIG.tripSafetyDays}일 미만이라 학생안전(주 1회 통화) 동의는 필요 없어요.</p>`}`}));
+  }
+  return stepView(Object.assign(base, {stepName: '서명', nextAct: 'toDoc', nextLabel: '양식으로 확인', body: `
+   <p class="q">서명해 주세요</p>
+   <div class="chips">${chip('trip.sigMode','pad','화면에 서명')}${chip('trip.sigMode','paper','출력 후 직접 서명')}</div>
+   ${t.sigMode === 'pad' ? sigPad('trip.sigG','보호자 서명') + sigPad('trip.sigS','학생 서명') : ''}
+   <div class="note">신청서는 <b>${md(addD(t.mode === 'half' ? t.hDate : t.start, -CONFIG.tripApplyBefore))}까지</b> 담임선생님께 내 주세요.</div>`}));
+};
+
+/* ---------- 결과보고서: 쉽게 작성 ---------- */
+function loadFromTrip() {
+  const t = S.trip, r = S.report, p = S.profile;
+  Object.assign(r, {mode: t.mode, start: t.start, end: t.end, hDate: t.hDate, hFrom: t.hFrom, hTo: t.hTo, dest: t.dest, comp: t.leaderSame ? (p.gRel || p.gName) : (t.lRel || t.lName), type: t.type, typeEtc: t.typeEtc, loaded: true});
+  if (!r.title && t.dest) r.title = '';
+  save();
+}
+const tripHasData = () => !!(S.trip.dest && tripDates(S.trip).length);
+ROUTES['report-write'] = () => {
+  const r = S.report, st = r.step, T = 3, p = S.profile;
+  if (!r.loaded && tripHasData()) loadFromTrip();
+  const base = {title: '결과보고서', back: 'home', guide: 'report', kind: 'report', step: st, total: T};
+  const dates = reportDates(r);
+  if (st === 1) {
+    const ok = profOk() && p.gName && dates.length && r.dest && r.comp && r.type && r.title;
+    return stepView(Object.assign(base, {stepName: '기본 정보·제목', nextDisabled: !ok, body: `
+     <p class="q">${r.loaded ? '신청서 내용을 불러왔어요' : '어디에 다녀왔나요?'}</p>
+     <p class="sub">${r.loaded ? '실제와 다르면 고쳐 주세요.' : '신청서를 이 기기에서 작성했다면 자동으로 채워져요.'}</p>
+     ${tripHasData() ? `<button class="chip" data-act="reload" style="align-self:flex-start">신청서 내용 다시 불러오기</button>` : ''}
+     <div class="card fields"><b>학생</b>${profileFields(false)}${inp('profile.gName','보호자 이름')}</div>
+     <div class="card fields"><b>다녀온 기간</b>
+      <div class="chips">${chip('report.mode','day','하루 이상')}${chip('report.mode','half','반일')}</div>
+      ${r.mode === 'day' ? `<div class="grid2"><div class="field"><label class="f" for="r-s">시작일</label><input class="in" type="date" id="r-s" data-p="report.start" data-rr value="${esc(r.start)}"></div><div class="field"><label class="f" for="r-e">끝난 날</label><input class="in" type="date" id="r-e" data-p="report.end" data-rr value="${esc(r.end)}"></div></div>`
+       : `<div class="field"><label class="f" for="r-h">날짜</label><input class="in" type="date" id="r-h" data-p="report.hDate" data-rr value="${esc(r.hDate)}"></div><div class="grid2"><div class="field"><label class="f" for="r-hf">시작</label><input class="in" type="time" id="r-hf" data-p="report.hFrom" value="${esc(r.hFrom)}"></div><div class="field"><label class="f" for="r-ht">끝</label><input class="in" type="time" id="r-ht" data-p="report.hTo" value="${esc(r.hTo)}"></div></div>`}
+      ${dates.length ? `<div class="note ok">결과보고서 제출 마감: <b>${md(addD(r.mode === 'half' ? r.hDate : r.end, CONFIG.tripReportWithin))}</b> · ${ddayTxt(dday(addD(r.mode === 'half' ? r.hDate : r.end, CONFIG.tripReportWithin)))}</div>` : ''}
+     </div>
+     <div class="card fields">${inp('report.dest','목적지')}${inp('report.comp','보호자(동반자)','placeholder="예) 어머니"')}
+      <div class="f">학습형태</div><div class="chips">${TRIP_TYPES.map(x => chip('report.type', x, x.replace('∙','·'))).join('')}</div>
+      ${r.type === '체험활동' ? inp('report.typeEtc','체험활동 내용') : ''}</div>
+     ${inp('report.title','제목','placeholder="예) 경주에서 만난 신라의 문화"')}
+     <div class="chips" data-live="r-titles">${['에서 배운 것들','에서 보낸 ' + (dates.length || 'N') + '일'].map(sfx => { const v = ((r.dest || '').split(' ').pop() || '○○') + sfx; return `<button class="chip" data-act="setTitle" data-v="${esc(v)}">${esc(v)}</button>`; }).join('')}</div>`}));
+  }
+  if (st === 2) {
+    if (!r.cur || !dates.includes(r.cur)) r.cur = dates[0];
+    const d = r.cur, x = r.days[d] || {};
+    const plan = (S.trip.plan || {})[d];
+    const filled = dates.filter(k => r.days[k] && (r.days[k].did || '').trim()).length;
+    return stepView(Object.assign(base, {stepName: '날짜별 기록', nextDisabled: filled === 0, body: `
+     <p class="q">날짜별로 떠올려 볼까요?</p><p class="sub">학생이 직접 써요. 답이 모여 본문이 됩니다.</p>
+     <div class="chips" role="tablist">${dates.map(k => `<button class="chip" role="tab" data-act="curDay" data-v="${k}" aria-selected="${k === d}" aria-pressed="${k === d}">${md(k)}${r.days[k] && (r.days[k].did || '').trim() ? ' ✓' : ''}</button>`).join('')}</div>
+     ${plan ? `<div class="small">신청서 계획: ${esc(plan)}</div>` : ''}
+     <div class="field"><label class="f" for="rd1">어디에서 무엇을 보고 했나요?</label><textarea class="in" id="rd1" data-day="${d}" data-k="did" placeholder="예) 불국사에서 다보탑과 석가탑을 보고 해설사 설명을 들었다.">${esc(x.did || '')}</textarea></div>
+     <div class="field"><label class="f" for="rd2">새로 알게 된 것은?</label><textarea class="in" id="rd2" data-day="${d}" data-k="learned" placeholder="예) 두 탑의 모양이 다른 이유를 알게 되었다.">${esc(x.learned || '')}</textarea></div>
+     <div class="field"><label class="f" for="rd3">느낀 점은?</label><textarea class="in" id="rd3" data-day="${d}" data-k="felt" placeholder="예) 교과서 사진으로 볼 때보다 훨씬 웅장했다.">${esc(x.felt || '')}</textarea></div>
+     <p class="small">“재미있었다”만 쓰면 다시 써야 할 수 있어요. 휴대폰 키보드의 마이크 버튼으로 말해서 입력해도 돼요.</p>`}));
+  }
+  const filledDays = dates.filter(k => r.days[k] && (r.days[k].did || '').trim()).length;
+  const ph = r.photos.filter(Boolean).length;
+  return stepView(Object.assign(base, {stepName: '사진·서명', nextAct: 'toDoc', nextLabel: '양식으로 확인', body: `
+   <p class="q">증빙 사진을 넣어 주세요</p><p class="sub">학생이 나온 현장 사진, 입장권·영수증 등 (최대 4장)</p>
+   <div class="photos">${[0,1,2,3].map(i => r.photos[i] ? `<div class="pbox"><img src="${r.photos[i]}" alt="증빙자료 ${i+1}"><button class="x" data-act="rmPhoto" data-i="${i}" aria-label="사진 ${i+1} 빼기">×</button></div>` : `<label class="pbox">+ 사진 넣기<input type="file" accept="image/*" class="sr" data-photo="${i}" multiple></label>`).join('')}</div>
+   <div class="card strong"><b>제출 전 점검</b>
+    <div class="chk"><span class="m">${r.title ? '✓' : '!'}</span><span>제목 ${r.title ? '' : '— 아직 없어요'}</span></div>
+    <div class="chk"><span class="m">${filledDays === dates.length ? '✓' : '!'}</span><span>날짜별 기록 ${filledDays}/${dates.length}일</span></div>
+    <div class="chk"><span class="m">${ph ? '✓' : '!'}</span><span>사진 ${ph}장</span></div>
+   </div>
+   <div class="f">서명</div><div class="chips">${chip('report.sigMode','pad','화면에 서명')}${chip('report.sigMode','paper','출력 후 직접 서명')}</div>
+   ${r.sigMode === 'pad' ? sigPad('report.sigG','보호자 서명') + sigPad('report.sigS','학생 서명') : ''}`}));
+};
+
+/* ---------- 문서 확인 ---------- */
+function docView(kind, title, back, editRoute, tips) {
+  const pages = docPages(kind);
+  return { title, back, body: `
+   <div class="note ok">본교 양식에 채워졌어요. 확인한 뒤 PDF나 이미지로 저장하세요.</div>
+   ${pages.map(p => `<div class="paperbox"><div class="paper">${p.html}</div></div>`).join('')}
+   ${tips}
+   <div class="row noprint"><button class="btn" data-act="png" data-k="${kind}">이미지로 저장</button>${inClaude ? '' : `<button class="btn" data-act="print">인쇄</button>`}</div>
+   <a class="btn ghost noprint" href="#${editRoute}">고치러 가기</a>`,
+   foot: `<button class="btn pri" data-act="pdf" data-k="${kind}">PDF로 저장</button>` };
+}
+ROUTES['doc-absence'] = () => { const D = absenceDocs(); return docView('absence', '근태신고서 확인', 'absence-write', 'absence-write', `<div class="card"><b>담임선생님께 낼 것</b><div class="chk"><span class="m">1</span><span>근태신고서 (출력해서 ${S.absence.sigMode === 'paper' ? '보호자 서명 후' : ''} 제출)</span></div>${D.list.length ? `<div class="chk"><span class="m">2</span><span>증빙서류: ${S.absence.docs.length ? esc(S.absence.docs.join(', ')) : esc(D.need)}</span></div>` : ''}${S.absence.reason === '질병' ? `<p class="small">결석 시작일부터 ${CONFIG.sickSubmitDays}일 이내 · ${md(addD(S.absence.start, CONFIG.sickSubmitDays-1))}까지</p>` : ''}</div>`); };
+ROUTES['doc-trip'] = () => docView('trip', '신청서 확인', 'trip-write', 'trip-write', `<div class="note warn">${md(addD(S.trip.mode === 'half' ? S.trip.hDate : S.trip.start, -CONFIG.tripApplyBefore))}까지 담임선생님께 내고, <b>허가 통보서(또는 문자)를 받은 뒤</b> 출발하세요.</div>`);
+ROUTES['doc-report'] = () => docView('report', '결과보고서 확인', 'report-write', 'report-write', `<div class="note">결과보고서와 별지(사진)를 함께 담임선생님께 내 주세요.</div>`);
+
+/* ---------- 서명 패드 ---------- */
+function initSigs() {
+  document.querySelectorAll('canvas[data-sig]').forEach(cv => {
+    const path = cv.dataset.sig; const r = cv.getBoundingClientRect(); const dpr = window.devicePixelRatio || 1;
+    cv.width = r.width * dpr; cv.height = r.height * dpr; const ctx = cv.getContext('2d'); ctx.scale(dpr, dpr);
+    ctx.lineWidth = 2.6; ctx.lineCap = 'round'; ctx.lineJoin = 'round'; ctx.strokeStyle = '#111';
+    const v = getp(path); if (v) { const im = new Image(); im.onload = () => ctx.drawImage(im, 0, 0, r.width, r.height); im.src = v; }
+    let drawing = false, last = null;
+    const pt = e => { const b = cv.getBoundingClientRect(); return [e.clientX - b.left, e.clientY - b.top]; };
+    cv.addEventListener('pointerdown', e => { drawing = true; last = pt(e); cv.setPointerCapture(e.pointerId); const ph = cv.parentNode.querySelector('.ph'); if (ph) ph.remove(); });
+    cv.addEventListener('pointermove', e => { if (!drawing) return; const p = pt(e); ctx.beginPath(); ctx.moveTo(last[0], last[1]); ctx.lineTo(p[0], p[1]); ctx.stroke(); last = p; });
+    const end = () => { if (!drawing) return; drawing = false; setp(path, cv.toDataURL('image/png')); };
+    cv.addEventListener('pointerup', end); cv.addEventListener('pointercancel', end);
+  });
+}
+/* ---------- 사진 ---------- */
+function initPhotos() {
+  document.querySelectorAll('input[data-photo]').forEach(inpEl => inpEl.addEventListener('change', async () => {
+    const files = [...inpEl.files]; let i = Number(inpEl.dataset.photo);
+    for (const f of files) {
+      while (i < 4 && S.report.photos[i]) i++;
+      if (i >= 4) break;
+      try { S.report.photos[i] = await shrink(f); } catch (e) { toast('사진을 읽지 못했어요'); }
+      i++;
+    }
+    save(); render(true);
+  }));
+}
+function shrink(file) {
+  return new Promise((res, rej) => {
+    const fr = new FileReader();
+    fr.onload = () => { const im = new Image(); im.onload = () => { const M = 1200; let w = im.width, h = im.height; const s = Math.min(1, M / Math.max(w, h)); w = Math.round(w * s); h = Math.round(h * s); const c = document.createElement('canvas'); c.width = w; c.height = h; c.getContext('2d').drawImage(im, 0, 0, w, h); res(c.toDataURL('image/jpeg', 0.82)); }; im.onerror = rej; im.src = fr.result; };
+    fr.onerror = rej; fr.readAsDataURL(file);
+  });
+}
+
+/* ---------- 이벤트 ---------- */
+document.addEventListener('click', e => {
+  const g = e.target.closest('[data-g][data-n]');
+  if (g && !e.target.closest('[data-act]')) { openSheet(g.dataset.g, g.dataset.n); return; }
+  const el = e.target.closest('[data-act]'); if (!el) return;
+  const act = el.dataset.act, P = el.dataset.p, V = el.dataset.v;
+  switch (act) {
+    case 'set': {
+      const cur = getp(P);
+      setp(P, V);
+      if (P === 'absence.reason' && cur !== V) { S.absence.sym = []; S.absence.act = []; S.absence.famEvent = ''; S.absence.docs = []; if (!S.absence.edited) S.absence.content = ''; }
+      if (P === 'absence.type' && cur !== V) { S.absence.periods = []; if (V !== '결석') S.absence.end = ''; }
+      if (P.startsWith('absence.')) absenceAuto();
+      if (P === 'trip.theme' || P === 'trip.subject') tripPurposeAuto();
+      render(true); break; }
+    case 'setb': setp(P, V === '1'); render(true); break;
+    case 'toggle': {
+      const arr = (getp(P) || []).slice(); const val = isNaN(V) ? V : Number(V); const i = arr.indexOf(val);
+      if (i >= 0) arr.splice(i, 1); else arr.push(val); setp(P, arr);
+      if (P.startsWith('absence.')) absenceAuto(); render(true); break; }
+    case 'step': {
+      const k = el.dataset.k; const o = S[k]; o.step = Math.max(1, o.step + Number(el.dataset.d)); save();
+      render(); $('#app').focus(); break; }
+    case 'toDoc': { const k = el.dataset.k; save(); go('doc-' + k); break; }
+    case 'saveDraft': save(); toast('이 기기에 저장했어요'); break;
+    case 'quickDate': {
+      const a = S.absence, t = todayS(), v = Number(V);
+      if (a.type === '결석') { if (v === -2) { a.start = addD(t, -1); a.end = t; } else { a.start = addD(t, v); a.end = addD(t, v); } }
+      else a.start = addD(t, v);
+      a.when = a.start > t ? '하고자' : '하였으므로';
+      save(); render(true); break; }
+    case 'resetAuto': S.absence.edited = false; absenceAuto(); save(); render(true); break;
+    case 'resetPurpose': S.trip.pEdited = false; tripPurposeAuto(); save(); render(true); break;
+    case 'toggleCb': { const arr = (getp(P) || []).slice(); const i = arr.indexOf(el.value); if (el.checked && i < 0) arr.push(el.value); if (!el.checked && i >= 0) arr.splice(i, 1); setp(P, arr); break; }
+    case 'cbBool': setp(P, el.checked); render(true); break;
+    case 'sigClear': setp(P, ''); render(true); break;
+    case 'sheetNav': openSheet(el.dataset.k, el.dataset.n); break;
+    case 'sheetClose': closeSheet(); break;
+    case 'curDay': S.report.cur = V; save(); render(true); break;
+    case 'setTitle': setp('report.title', V); render(true); break;
+    case 'reload': loadFromTrip(); render(true); toast('신청서 내용을 불러왔어요'); break;
+    case 'rmPhoto': S.report.photos.splice(Number(el.dataset.i), 1); save(); render(true); break;
+    case 'pdf': savePDF(el.dataset.k); break;
+    case 'png': savePNG(el.dataset.k); break;
+    case 'print': try { window.print(); } catch (err) { toast('PDF로 저장한 뒤 인쇄해 주세요'); } break;
+    case 'newAbs': {
+      const rs = el.dataset.reason; const prof = S.absence;
+      if (prof.done || !prof.type || prof.reason !== rs) { S.absence = Object.assign(DEF().absence, {reason: rs, sigMode: prof.sigMode}); }
+      save(); break; }
+    case 'done': { const k = el.dataset.k; S[k].done = true; save(); render(true); toast('알림을 지웠어요'); break; }
+    case 'wipe': S = DEF(); try { localStorage.removeItem(KEY); } catch (err) {} render(); toast('모두 지웠어요'); break;
+    case 'needDates': e.preventDefault(); toast('먼저 기간을 골라 주세요'); break;
+  }
+});
+document.addEventListener('input', e => {
+  const el = e.target;
+  if (el.dataset.p && !el.dataset.act) {
+    setp(el.dataset.p, el.value);
+    if (el.dataset.edit) setp(el.dataset.edit, true);
+    if (el.hasAttribute('data-auto')) { if (el.dataset.p.startsWith('absence.')) { absenceAuto(); const c = $('#a-c'); if (c) c.value = S.absence.content; } if (el.dataset.p === 'trip.dest') tripPurposeAuto(); }
+    updateNext();
+  }
+  if (el.dataset.plan) { S.trip.plan[el.dataset.plan] = el.value; save(); updateNext(); }
+  if (el.dataset.day) { const r = S.report; r.days[el.dataset.day] = r.days[el.dataset.day] || {}; r.days[el.dataset.day][el.dataset.k] = el.value; save(); updateNext(); }
+  if (el.dataset.fam) { const f = S._fam || {id:'d5', date: todayS(), next:false}; f[el.dataset.fam] = el.type === 'checkbox' ? el.checked : el.value; S._fam = f; }
+});
+document.addEventListener('change', e => {
+  const el = e.target;
+  if (el.hasAttribute('data-rr') || el.dataset.fam || el.dataset.p === 'absence.start') {
+    if (el.dataset.p === 'absence.start') { const a = S.absence; a.when = a.start > todayS() ? '하고자' : '하였으므로'; if (a.type !== '결석') a.end = ''; save(); }
+    render(true);
+  }
+});
+// 입력 중에는 화면 전체를 다시 그리지 않고, 바뀌는 부분과 '다음' 버튼만 갱신
+let liveT = null;
+function updateNext() { clearTimeout(liveT); liveT = setTimeout(livePatch, 120); }
+function livePatch() {
+  const fn = ROUTES[curRoute]; if (!fn) return;
+  const v = fn(); const tmp = document.createElement('div'); tmp.innerHTML = v.body;
+  tmp.querySelectorAll('[data-live]').forEach(n => { const cur = document.querySelector(`[data-live="${n.dataset.live}"]`); if (cur && cur.innerHTML !== n.innerHTML) cur.innerHTML = n.innerHTML; });
+  const btn = document.querySelector('.foot [data-d="1"]');
+  if (btn && v.foot) { const m = v.foot.match(/data-d="1"( disabled)?/); btn.disabled = !!(m && m[1]); }
+}
+
+render();
+</script>
+</body>
+</html>
